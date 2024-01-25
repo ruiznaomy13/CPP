@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 20:31:25 by ncastell          #+#    #+#             */
-/*   Updated: 2024/01/11 21:29:15 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:59:14 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void megaphone(char **str)
 {
   int i = 0;
 
-  while (str[i]) {
+  while (str[i])
+  {
     char *currentStr = str[i];
-    while (*currentStr) {
+    while (*currentStr)
+    {
       std::cout << (char)std::toupper((unsigned char)*currentStr);
       currentStr++;
     }
@@ -29,10 +31,11 @@ void megaphone(char **str)
 
 int main(int ac, char **av)
 {
-  (void)ac;
-  megaphone(av);
+  if (ac > 1)
+    megaphone(&av[1]);
+  else
+    std::cout << "* LOUD AND UNREADABLE FEEDBACK NOISE *";
   std::cout << std::endl;
-
   return (0);
 }
 
