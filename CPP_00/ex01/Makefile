@@ -1,6 +1,6 @@
 NAME		= phonebook
 
-SRC			= main.cpp PhoneBook.cpp #Contact.cpp
+SRC			= main.cpp PhoneBook.cpp Contact.cpp
 
 OBJ			= $(SRC:.cpp=.o)
 DEP			= $(SRC:.cpp=.d)
@@ -19,18 +19,18 @@ NC			= \033[0m
 all:	$(NAME)
 
 $(NAME): $(OBJ) Makefile
-	${CPP} ${CPPFLAGS} ${OBJ} -o ${NAME}
-	@echo "$(GREEN)\n✨ COMPILED ✨\n$(DEF_COLOR)"
+	@${CPP} ${CPPFLAGS} ${OBJ} -o ${NAME}
+	@echo "$(GREEN)\n    PHONE BOOK COMPILED 📇\n$(NC)"
 
 %.o: %.cpp
 	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ) $(DEP)
-	@echo "$(RED)\nDELETED\n $(NC)"
+	@$(RM) $(OBJ) $(DEP)
+	@echo "$(RED)\n      DELETED ❌\n $(NC)"
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re:	fclean all
 

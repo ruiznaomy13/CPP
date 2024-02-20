@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:51:09 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/13 15:07:41 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/20 17:56:27 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 
 int	main()
 {
+	PhoneBook	phoneBook;
 	std::string	action;
 
-	std::cout << "What would you wanna do?\n- SEARCH\n" << std::endl;
-	std::cin >> action;
-
-	if (action == "SEARCH")
+	while (22)
 	{
-		std::cout << "Give me the first name: " << std::endl;
+		system("clear");
+		std::cout << NC"What would you wanna do?\n- ADD\n- SEARCH\n- EXIT\n" << std::endl;
+		std::getline(std::cin, action);
+		
+		if (action == "ADD")
+			phoneBook.saveContactInfo();
+		else if (action == "SEARCH")
+			phoneBook.showContact();
+		else
+            std::cout << "Invalid choice. Please try again." << std::endl;
 	}
 }
