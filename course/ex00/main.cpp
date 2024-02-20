@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ramen.cpp                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/11 16:15:21 by ncastell          #+#    #+#             */
-/*   Updated: 2024/01/11 16:51:33 by ncastell         ###   ########.fr       */
+/*   Created: 2024/02/05 19:08:23 by ncastell          #+#    #+#             */
+/*   Updated: 2024/02/05 19:15:13 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Ramen.h"
 #include <iostream>
+#include <cmath>
 
-using namespace std;
 
-Ramen::Ramen()
+int main()
 {
-  cout << "I really really love Ramen!" << endl;
-};
+  int base, exponent;
+
+  std::cout << "Base: ";
+  std::cin >> base;
+  std::cout << "Exponent: ";
+  std::cin >> exponent;
+
+  double  power = pow(base, exponent);
+  std::cout << power << std::endl;
+}
