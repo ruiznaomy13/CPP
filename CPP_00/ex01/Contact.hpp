@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:45:37 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/20 17:52:49 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:52:58 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <string>
+# include <unistd.h>
 
 # define CYAN		"\x1b[36m"
 # define MAGENTA	"\033[95m"

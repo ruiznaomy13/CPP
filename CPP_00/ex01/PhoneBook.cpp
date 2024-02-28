@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:24:10 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/20 18:17:02 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:00:46 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 PhoneBook::PhoneBook(/* args */)
 {
-	_contact_number = 0;
+	_contactNumber = 0;
 }
 
 PhoneBook::~PhoneBook()
@@ -39,22 +39,25 @@ void	PhoneBook::saveContactInfo(void)
 	std::getline(std::cin, phoneNumber);
 
 	// saveInfo
-	_contact[_contact_number].setFirstName(firstName);
-	_contact[_contact_number].setLastName(lastName);
-	_contact[_contact_number].setNickName(nickName);
-	_contact[_contact_number].setPhoneNumber(phoneNumber);
+	_contact[_contactNumber].setFirstName(firstName);
+	_contact[_contactNumber].setLastName(lastName);
+	_contact[_contactNumber].setNickName(nickName);
+	_contact[_contactNumber].setPhoneNumber(phoneNumber);
+	_contactNumber++;
 	std::cout << GREEN"\nSAVED CORRECTLY ✅\n" << std::endl;
+	std::cout << NC"Press enter to continue ..." << std::endl;
 	std::cin.get();
 };
 
 // Hacer un funcion de display 
-void	PhoneBook::showContact(int )
+void	PhoneBook::showContact(int index)
 {
 	std::cout << CYAN"\n    ---- CONTACT INFO ----" << std::endl;
-	std::cout << _contact[0].getFirstName() << std::endl;
-	std::cout << _contact[0].getLastName() << std::endl;
-	std::cout << _contact[0].getNickName() << std::endl;
-	std::cout << _contact[0].getPhoneNumber() << std::endl;
+	std::cout << _contact[index].getFirstName() << std::endl;
+	std::cout << _contact[index].getLastName() << std::endl;
+	std::cout << _contact[index].getNickName() << std::endl;
+	std::cout << _contact[index].getPhoneNumber() << std::endl;
 	std::cout << NC"" << std::endl;
+	std::cout << "Press enter to continue ..." << std::endl;
 	std::cin.get();
 }
