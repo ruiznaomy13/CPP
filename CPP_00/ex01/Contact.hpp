@@ -25,10 +25,10 @@
 class Contact
 {
 	private:
-		std::string	_firstName;
-		std::string	_lastName;
-		std::string	_nickName;
-		std::string	_phoneNumber;
+		std::string		_firstName;
+		std::string		_lastName;
+		std::string		_nickName;
+		std::string		_phoneNumber;
 
 	public:
 		Contact();
@@ -45,6 +45,8 @@ class Contact
 		std::string	getLastName(void);
 		std::string	getNickName(void);
 		std::string	getPhoneNumber(void);
+
+		void		showContact(int index);
 };
 
 #endif

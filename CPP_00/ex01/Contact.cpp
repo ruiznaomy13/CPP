@@ -21,6 +21,29 @@ Contact::~Contact()
 }
 
 
+void    Contact::showContact(int index)
+{
+    std::cout << "entra en display" << std::endl;
+    int n = 4;
+    std::string str[n];
+
+    str[0] = index + 49;
+    str[1] = _firstName;
+    str[2] = _lastName;
+    str[3] = _nickName;
+
+    for (int i = 0; i < n; i++)
+    {
+        if (str[i].length() > 10)
+			std::cout << str[i].erase(0, 9);
+		else
+			std::cout << str[i];
+        std::cout << " | ";
+    }
+
+    std::cout << std::endl;
+}
+
 /* SETTERS */
 void	Contact::setFirstName(std::string firstName) {
 	_firstName = firstName;

@@ -18,7 +18,7 @@
 class PhoneBook
 {
 	private:
-		Contact	_contact[8];
+		Contact	_contact[3];
 		int		_contactNumber;
 		
 	public:
@@ -26,6 +26,9 @@ class PhoneBook
 		~PhoneBook(void);
 		void	saveContactInfo(void);
 		void	showContact(int index);
+		void	selectAction(std::string action);
+		void	errorMsg(int error);
+		void	searchContact(void);
 };
 
 #endif

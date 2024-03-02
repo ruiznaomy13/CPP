@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-
+#include <cstdlib>
 
 std::string ft_toUpperCase(std::string& str)
 {
@@ -21,31 +21,37 @@ std::string ft_toUpperCase(std::string& str)
 	return (str);
 }
 
+// void	strToInt(std::string &str)
+// {
+// 	char *
+// }
+
 int	main()
 {
 	PhoneBook	phoneBook;
 	std::string	action;
 	std::string	str_index;
-	int			index;
+	// int			index;
 
 	while (true)
 	{
-		system("clear");
+		// system("clear");
 		std::cout << NC"What would you wanna do?\n- ADD\n- SEARCH\n- EXIT\n" << std::endl;
 		std::getline(std::cin, action);
 		action = ft_toUpperCase(action);
-		
+
 		if (action == "ADD")
 			phoneBook.saveContactInfo();
 		else if (action == "SEARCH")
 		{
-			std::cout << "Num contact: " << std::endl;
-			std::getline(std::cin, str_index);
-			index = std::stoi(str_index);
-			phoneBook.showContact(index); // como poner esto bien?
+			// phoneBook.searchContact();
+			// std::cout << "Num contact: " << std::endl;
+			// std::getline(std::cin, str_index);
+			// index = atoi(str_index.c_str());
+			phoneBook.searchContact(); // como poner esto bien?
 		}
 		else if (action == "EXIT" || action == "exit")
-			return EXIT_SUCCESS;
+			return 0;
 		else {
             std::cout << "Invalid choice. Please try again." << std::endl;
 			std::cout << "Press enter to continue ..." << std::endl;
