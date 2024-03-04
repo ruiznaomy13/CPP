@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:45:37 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/20 18:52:58 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/04 20:11:20 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ class Contact
 		std::string	getDarkSecret(void);
 
 		void		showContact(int index);
-		void		showFullContact(int index);
+		void		showFullContact(void);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:51:09 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 14:24:21 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/04 20:14:41 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	main()
 
 	while (true)
 	{
-		// system("clear");
+		system("clear");
 		std::cout << NC"What would you wanna do?\n- ADD\n- SEARCH\n- EXIT\n" << std::endl;
-		if (std::getline(std::cin, action))
+		if (!std::getline(std::cin, action))
 			return EXIT_FAILURE;
 		action = ft_toUpperCase(action);
 		if (action == "ADD")
@@ -47,7 +47,7 @@ int	main()
 		else if (action == "EXIT")
 			return EXIT_SUCCESS;
 		else
-			PhoneBook.errorMsg(0);
+			phoneBook.errorMsg(0);
 		std::cin.get();
 	}
 }

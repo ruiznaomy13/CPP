@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:24:10 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/20 19:00:46 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/04 20:18:56 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void PhoneBook::searchContact(void)
 
     if (!_contactNumber)
         return errorMsg(2);
-
     for (int i = 0; i < _contactNumber; i++)
         _contact[i].showContact(i);
     std::cout << "Num contact: " << std::endl;
@@ -89,8 +88,10 @@ void PhoneBook::searchContact(void)
     if (isNum(index))
         return errorMsg(3);
     n_index = std::atoi(index.c_str());
-    if (n_index >= 0 && n_index < _contactNumber)
-        _contact[n_index].showFullContact(n_index);
+    if (n_index >= 0 && n_index < _contactNumber){
+        _contact[n_index].showFullContact();
+		std::cout << _contactNumber << std::endl;
+	}
     else
         errorMsg(3);
 }

@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:33:33 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/20 17:28:30 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/04 20:11:08 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	Contact::showContact(int index)
 	std::cout << std::endl;
 }
 
-void	Contact::showFullContact(int index)
+void	Contact::showFullContact(void)
 {
 	std::cout << _firstName << std::endl;
 	std::cout << _lastName << std::endl;
