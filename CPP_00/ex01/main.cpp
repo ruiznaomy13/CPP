@@ -37,25 +37,17 @@ int	main()
 	{
 		// system("clear");
 		std::cout << NC"What would you wanna do?\n- ADD\n- SEARCH\n- EXIT\n" << std::endl;
-		std::getline(std::cin, action);
+		if (std::getline(std::cin, action))
+			return EXIT_FAILURE;
 		action = ft_toUpperCase(action);
-
 		if (action == "ADD")
 			phoneBook.saveContactInfo();
 		else if (action == "SEARCH")
-		{!
-			// phoneBook.searchContact();
-			// std::cout << "Num contact: " << std::endl;
-			// std::getline(std::cin, str_index);
-			// index = atoi(str_index.c_str());
-			phoneBook.searchContact(); // como poner esto bien?
-		}
-		else if (action == "EXIT" || action == "exit")
-			return 0;
-		else {
-            std::cout << "Invalid choice. Please try again." << std::endl;
-			std::cout << "Press enter to continue ..." << std::endl;
-			std::cin.get();
-		}
+			phoneBook.searchContact();
+		else if (action == "EXIT")
+			return EXIT_SUCCESS;
+		else
+			PhoneBook.errorMsg(0);
+		std::cin.get();
 	}
 }

@@ -23,12 +23,15 @@ PhoneBook::~PhoneBook()
 
 void	PhoneBook::errorMsg(int error)
 {
+	if (error == 0)
+		std::cout << "Invalid choice. Please try again." << std::endl;
 	if (error == 1)
 		std::cerr << "Input empty, please enter a correct input:" << std::endl;
 	if (error == 2)
-        std::cerr << "There are no contacts" << std::endl;
+		std::cerr << "There are no contacts" << std::endl;
 	if (error == 3)
-        std::cout << "Invalid contact number." << std::endl;
+		std::cout << "Invalid contact number." << std::endl;
+	std::cout << "Press enter to continue ..." << std::endl;
 }
 
 void PhoneBook::saveContactInfo()
