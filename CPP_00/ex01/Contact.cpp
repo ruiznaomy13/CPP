@@ -20,28 +20,35 @@ Contact::~Contact()
 {
 }
 
-
-void    Contact::showContact(int index)
+void	Contact::showContact(int index)
 {
-    std::cout << "entra en display" << std::endl;
-    int n = 4;
-    std::string str[n];
+	std::string str[4];
 
-    str[0] = index + 49;
-    str[1] = _firstName;
-    str[2] = _lastName;
-    str[3] = _nickName;
+	str[0] = index + 49;
+	str[1] = _firstName;
+	str[2] = _lastName;
+	str[3] = _nickName;
 
-    for (int i = 0; i < n; i++)
-    {
-        if (str[i].length() > 10)
-			std::cout << str[i].erase(0, 9);
-		else
+	for (int i = 0; i < 4; i++)
+	{
+		if (str[i].length() > 10)
+			std::cout << str[i].substr(0, 9) << ".";
+		else {
 			std::cout << str[i];
-        std::cout << " | ";
-    }
+			for (size_t j = str[i].length(); j < 10; j++)
+                std::cout << " ";
+		}
+		std::cout << " | ";
+	}
+	std::cout << std::endl;
+}
 
-    std::cout << std::endl;
+void	Contact::showFullContact(int index)
+{
+	std::cout << _firstName << std::endl;
+	std::cout << _lastName << std::endl;
+	std::cout << _nickName << std::endl;
+	std::cout << _phoneNumber << std::endl;
 }
 
 /* SETTERS */

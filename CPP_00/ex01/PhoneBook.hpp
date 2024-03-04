@@ -29,6 +29,7 @@ class PhoneBook
 		void	selectAction(std::string action);
 		void	errorMsg(int error);
 		void	searchContact(void);
+		int		isNum(std::string str);
 };
 
 #endif
