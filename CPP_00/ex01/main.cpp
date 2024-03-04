@@ -43,7 +43,7 @@ int	main()
 		if (action == "ADD")
 			phoneBook.saveContactInfo();
 		else if (action == "SEARCH")
-		{
+		{!
 			// phoneBook.searchContact();
 			// std::cout << "Num contact: " << std::endl;
 			// std::getline(std::cin, str_index);
