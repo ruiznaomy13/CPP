@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:45:37 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/04 20:11:20 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:25:44 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@
 # include <iostream>
 # include <string>
 # include <unistd.h>
+# include <iomanip> 
 
+# define RED		"\x1b[31m"
+# define GREEN		"\x1b[32m"
+# define YELLOW		"\x1b[33m"
+# define BLUE		"\x1b[34m"
+# define WHITE		"\e[1;37m"
 # define CYAN		"\x1b[36m"
 # define MAGENTA	"\033[95m"
-# define GREEN		"\x1b[32m"
 # define NC			"\033[0m"
 
 class Contact

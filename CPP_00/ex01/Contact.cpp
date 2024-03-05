@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:33:33 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/04 20:11:08 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:50:06 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ void	Contact::showContact(int index)
 		if (str[i].length() > 10)
 			std::cout << str[i].substr(0, 9) << ".";
 		else {
+			std::cout << std::setw(10);
 			std::cout << str[i];
-			for (size_t j = str[i].length(); j < 10; j++)
-                std::cout << " ";
+			// for (size_t j = str[i].length(); j < 10; j++)
+            //     std::cout << " ";
 		}
-		std::cout << " | ";
+			std::cout << "|";
 	}
 	std::cout << std::endl;
 }
@@ -49,6 +50,7 @@ void	Contact::showFullContact(void)
 	std::cout << _lastName << std::endl;
 	std::cout << _nickName << std::endl;
 	std::cout << _phoneNumber << std::endl;
+	std::cout << _darkSecret << std::endl;
 }
 
 /* SETTERS */
@@ -68,6 +70,9 @@ void	Contact::setPhoneNumber(std::string phoneNumber) {
 	_phoneNumber = phoneNumber;
 }
 
+void	Contact::setDarkSecret(std::string darkSecret) {
+	_darkSecret = darkSecret;
+}
 
 /* GETTERS */
 std::string	Contact::getFirstName(void) {
@@ -84,4 +89,8 @@ std::string	Contact::getNickName(void) {
 
 std::string	Contact::getPhoneNumber(void) {
 	return (_phoneNumber);
+}
+
+std::string	Contact::getDarkSecret(void) {
+	return (_darkSecret);
 }

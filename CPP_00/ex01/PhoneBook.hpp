@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:29:23 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/20 18:44:49 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:06:02 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 # include "Contact.hpp"
 
+# define MAX_CONTACTS	8
+
 class PhoneBook
 {
 	private:
-		Contact	_contact[3];
+		Contact	_contact[MAX_CONTACTS];
 		int		_contactNumber;
 		
 	public:
@@ -28,6 +30,7 @@ class PhoneBook
 		void	showContact(int index);
 		void	selectAction(std::string action);
 		void	errorMsg(int error);
+		void	successMsg(int type);
 		void	searchContact(void);
 		int		isNum(std::string str);
 };

@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:51:09 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/04 20:14:41 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/05 16:33:56 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,5 @@ int	main()
 			return EXIT_SUCCESS;
 		else
 			phoneBook.errorMsg(0);
-		std::cin.get();
 	}
 }
