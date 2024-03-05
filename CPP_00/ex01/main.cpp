@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:51:09 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/05 16:33:56 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:54:50 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ std::string ft_toUpperCase(std::string& str)
 	
 	return (str);
 }
-
-// void	strToInt(std::string &str)
-// {
-// 	char *
-// }
 
 int	main()
 {

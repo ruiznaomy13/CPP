@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 16:33:33 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/05 17:50:06 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/05 19:31:58 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	Contact::showContact(int index)
 		else {
 			std::cout << std::setw(10);
 			std::cout << str[i];
-			// for (size_t j = str[i].length(); j < 10; j++)
-            //     std::cout << " ";
 		}
 			std::cout << "|";
 	}
@@ -46,11 +44,12 @@ void	Contact::showContact(int index)
 
 void	Contact::showFullContact(void)
 {
-	std::cout << _firstName << std::endl;
-	std::cout << _lastName << std::endl;
-	std::cout << _nickName << std::endl;
-	std::cout << _phoneNumber << std::endl;
-	std::cout << _darkSecret << std::endl;
+	std::cout << CYAN"\n    ---- CONTACT INFO ----" << std::endl;
+	std::cout << WHITE"First name: " << NC"" << _firstName << std::endl;
+	std::cout << WHITE"Last name: " << NC"" << _lastName << std::endl;
+	std::cout << WHITE"Nick name: " << NC"" << _nickName << std::endl;
+	std::cout << WHITE"Phone number: " << NC"" << _phoneNumber << std::endl;
+	std::cout << WHITE"Darkest secret:\n" << NC"" << _darkSecret << std::endl;
 }
 
 /* SETTERS */

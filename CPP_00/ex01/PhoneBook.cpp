@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:24:10 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/05 17:49:19 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/05 20:50:20 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	PhoneBook::errorMsg(int error)
 		std::cout << RED"ERROR: Invalid contact number." << std::endl;
 	if (error == 4)
 		std::cerr << YELLOW"Warning: The phonebook is full!" << std::endl;
-	if (error != 1) {
+	if (error != 1 && error != 4) {
 		std::cout << WHITE"\nPress enter to continue ..." << std::endl;
 		std::cin.get();
 	}
@@ -48,7 +48,7 @@ void	PhoneBook::successMsg(int type)
 	std::cin.get();
 }
 
-void PhoneBook::saveContactInfo()
+void	PhoneBook::saveContactInfo()
 {
     std::string firstName, lastName, nickName, phoneNumber, darkSecret;
 
@@ -64,19 +64,28 @@ void PhoneBook::saveContactInfo()
     std::cout << "Darkest Secret: ";
     while (std::getline(std::cin, darkSecret) && darkSecret.empty()) {errorMsg(1);}
 
+	//        3         |       3
+	if (_contactNumber == MAX_CONTACTS) {
+		for (int i = 0; i < MAX_CONTACTS - 1; i++)
+			_contact[i] = _contact[i + 1];
+		errorMsg(4);
+		_contactNumber--;
+	}
+
     _contact[_contactNumber].setFirstName(firstName);
     _contact[_contactNumber].setLastName(lastName);
     _contact[_contactNumber].setNickName(nickName);
     _contact[_contactNumber].setPhoneNumber(phoneNumber);
 	_contact[_contactNumber].setDarkSecret(darkSecret);
+	// 0 -- ---- - -- - - -
+	// 1 ----- - - -- - -- 
+	// 2 --- - - - ------
+	
+	//			2      |		3 
+	if (_contactNumber < MAX_CONTACTS)
+		_contactNumber++;  // 3
 
-	if (_contactNumber == MAX_CONTACTS - 1) {
-        for (int i = 0; i < MAX_CONTACTS - 1; i++)
-            _contact[i] = _contact[i + 1];
-		errorMsg(4);
-    }
-	if (_contactNumber < MAX_CONTACTS - 1)
-    	_contactNumber++;
+	std::cout << _contactNumber << std::endl;
     successMsg(1);
 }
 
@@ -87,7 +96,8 @@ void PhoneBook::searchContact(void)
 
     if (!_contactNumber)
         return errorMsg(2);
-	std::cout << "  INDEX   |  NAME    | LASTNAME | NICKNAME |" << std::endl;
+	std::cout << "\n     INDEX|      NAME| LAST NAME| NICK NAME" << std::endl;
+	std::cout << "-----------------------------------------------" << std::endl;
     for (int i = 0; i < _contactNumber; i++)
         _contact[i].showContact(i);
     std::cout << CYAN"\nNum contact: " << std::endl;
@@ -105,7 +115,6 @@ void PhoneBook::searchContact(void)
 
 void	PhoneBook::showContact(int index)
 {
-	std::cout << CYAN"\n    ---- CONTACT INFO ----" << std::endl;
 	std::cout << _contact[index].getFirstName() << std::endl;
 	std::cout << _contact[index].getLastName() << std::endl;
 	std::cout << _contact[index].getNickName() << std::endl;
