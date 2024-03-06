@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 14:51:09 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/05 19:54:50 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:11:20 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main()
 		else if (action == "SEARCH")
 			phoneBook.searchContact();
 		else if (action == "EXIT")
-			return EXIT_SUCCESS;
+			return (EXIT_SUCCESS);
 		else
 			phoneBook.errorMsg(0);
 	}

@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:24:10 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/05 20:50:20 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:41:26 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,28 +64,21 @@ void	PhoneBook::saveContactInfo()
     std::cout << "Darkest Secret: ";
     while (std::getline(std::cin, darkSecret) && darkSecret.empty()) {errorMsg(1);}
 
-	//        3         |       3
 	if (_contactNumber == MAX_CONTACTS) {
 		for (int i = 0; i < MAX_CONTACTS - 1; i++)
 			_contact[i] = _contact[i + 1];
 		errorMsg(4);
 		_contactNumber--;
 	}
-
     _contact[_contactNumber].setFirstName(firstName);
     _contact[_contactNumber].setLastName(lastName);
     _contact[_contactNumber].setNickName(nickName);
     _contact[_contactNumber].setPhoneNumber(phoneNumber);
 	_contact[_contactNumber].setDarkSecret(darkSecret);
-	// 0 -- ---- - -- - - -
-	// 1 ----- - - -- - -- 
-	// 2 --- - - - ------
-	
-	//			2      |		3 
-	if (_contactNumber < MAX_CONTACTS)
-		_contactNumber++;  // 3
 
-	std::cout << _contactNumber << std::endl;
+	if (_contactNumber < MAX_CONTACTS)
+		_contactNumber++;
+
     successMsg(1);
 }
 
@@ -96,8 +89,8 @@ void PhoneBook::searchContact(void)
 
     if (!_contactNumber)
         return errorMsg(2);
-	std::cout << "\n     INDEX|      NAME| LAST NAME| NICK NAME" << std::endl;
-	std::cout << "-----------------------------------------------" << std::endl;
+	std::cout << "\n     INDEX |       NAME |  LAST NAME |  NICK NAME" << std::endl;
+	std::cout << "---------------------------------------------------------" << std::endl;
     for (int i = 0; i < _contactNumber; i++)
         _contact[i].showContact(i);
     std::cout << CYAN"\nNum contact: " << std::endl;
