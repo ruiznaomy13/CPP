@@ -7,7 +7,7 @@
 #      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝░░╚═╝╚══════╝╚═╝░░░░░╚═╝╚══════╝╚══════╝      #
 # ************************************************************************ #
 
-NAME		= phonebook
+NAME		= zombie
 HEADER		= Zombie.hpp
 SRC			= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 
@@ -29,7 +29,7 @@ all:	$(NAME)
 
 $(NAME): $(OBJ) $(HEADER) Makefile
 	@${CPP} ${CPPFLAGS} ${OBJ} -o ${NAME}
-	@echo "$(GREEN)\n    PHONE BOOK COMPILED 📇\n$(NC)"
+	@echo "$(GREEN)\n    MISION STARTED 🎮\n$(NC)"
 
 %.o: %.cpp
 	@$(CPP) $(CPPFLAGS) -c $< -o $@

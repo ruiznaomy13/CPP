@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Weapon.hpp                                         :+:      :+:    :+:   */
+/*   FileReplacer.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 16:10:52 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/15 17:08:28 by ncastell         ###   ########.fr       */
+/*   Created: 2024/03/15 23:33:35 by ncastell          #+#    #+#             */
+/*   Updated: 2024/03/16 00:44:03 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	WEAPON_HPP
-# define WEAPON_HPP
+#ifndef FILE_REPLACER_HPP
+# define FILE_REPLACER_HPP
 
 # include <iostream>
+# include <fstream>
 # include <string>
+# include <vector>
 
-class Weapon
+class FileReplacer
 {
 	private:
-		std::string	type;
+		std::string 				filename;
+		std::vector<std::string>	content;
 
 	public:
-		Weapon();
-		Weapon(std::string type);
-		~Weapon();
+		FileReplacer(const std::string& _filename);
 
-		// getters
-		const std::string	getType(void);
-		
-		// setters
-		void	setType(std::string _type);
+		void readFromFile();
+		// void replaceString(const std::string& s1, const std::string& s2);
+		// void writeToFile();
+		void	muestra_vector();
 };
+
 
 #endif

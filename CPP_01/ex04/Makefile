@@ -7,9 +7,8 @@
 #      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝░░╚═╝╚══════╝╚═╝░░░░░╚═╝╚══════╝╚══════╝      #
 # ************************************************************************ #
 
-NAME		= brainz
-HEADER		= Zombie.hpp
-SRC			= main.cpp Zombie.cpp zombieHorde.cpp
+NAME		= file_replace
+SRC			= main.cpp FileReplacer.cpp
 
 OBJ			= $(SRC:.cpp=.o)
 DEP			= $(SRC:.cpp=.d)
@@ -25,22 +24,22 @@ GREEN		= \033[1;92m
 RED			= \033[1;91m
 NC			= \033[0m
 
-all:	$(NAME)
+all:		$(NAME)
 
-$(NAME): $(OBJ) $(HEADER) Makefile
-	@${CPP} ${CPPFLAGS} ${OBJ} -o ${NAME}
-	@echo "$(GREEN)\n    MISION STARTED 🎮\n$(NC)"
+$(NAME):	$(OBJ) Makefile
+			@${CPP} ${CPPFLAGS} ${OBJ} -o ${NAME}
+			@echo "$(GREEN)\n    COMPILED 📇\n$(NC)"
 
-%.o: %.cpp
-	@$(CPP) $(CPPFLAGS) -c $< -o $@
+%.o:	%.cpp
+		@$(CPP) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	@$(RM) $(OBJ) $(DEP)
-	@echo "$(RED)\n      DELETED ❌\n $(NC)"
+		@$(RM) $(OBJ) $(DEP)
+		@echo "$(RED)\n      DELETED ❌\n $(NC)"
 
-fclean: clean
-	@$(RM) $(NAME)
+fclean:	clean
+		@$(RM) $(NAME)
 
-re:	fclean all
+re:		fclean all
 
-.PHONY: all clean fclean re
+.PHONY:	all clean fclean re
