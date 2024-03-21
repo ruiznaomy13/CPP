@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 23:33:35 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/16 00:44:03 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:40:14 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,30 @@
 # include <string>
 # include <vector>
 
+# define ERROR_OF	1
+
+
 class FileReplacer
 {
 	private:
-		std::string 				filename;
-		std::vector<std::string>	content;
+		std::string 	filename;
+		std::string		file;
+		std::string		s1;
+		std::string		s2;
+		std::string		buffer;
+		std::string		text;
+		std::ifstream	infile;
+		std::ofstream	outfile;
 
 	public:
 		FileReplacer(const std::string& _filename);
 
-		void readFromFile();
-		// void replaceString(const std::string& s1, const std::string& s2);
-		// void writeToFile();
-		void	muestra_vector();
+		void 	readFromFile();
+		void	newFileGenerator();
+		void	ft_error(int error);
+
+		void	setS1(std::string& _s1);
+		void	setS2(std::string& _s2);
 };
 
 

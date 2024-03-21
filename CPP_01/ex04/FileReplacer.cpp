@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 23:34:36 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/16 00:57:03 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:48:06 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,51 @@ FileReplacer::FileReplacer(const std::string& _filename) : filename(_filename)
 
 void	FileReplacer::readFromFile()
 {
-	std::ifstream				inputFile(filename);
-	std::string					line;
-
-	if (!inputFile)
+	infile.open(this->filename);
+	if (!this->infile.is_open())
+		return (ft_error(ERROR_OF));
+	while (std::getline(this->infile, this->buffer))
 	{
-		std::cout << "Error al abrir ejemplo.dat\n";
-		exit(EXIT_FAILURE);
+		this->text += this->buffer;
+		this->text += "\n";
 	}
-
-	while (inputFile >> line)
-		this->content.push_back(line);
-	muestra_vector();
+	this->infile.close();
 }
 
-void FileReplacer::muestra_vector()
+void	FileReplacer::newFileGenerator()
 {
-	std::vector<std::string>::const_iterator it;
+	int	size = this->s1.size();
+	int	search = this->text.find(s1, 0);
 
-	for (it = this->content.begin(); it != this->content.end(); ++it)
-		std::cout << *it << "\n";
-	std::cout << std::endl;
+	outfile.open(this->filename + ".replace");
+	if (!this->outfile)
+		return (ft_error(ERROR_OF));
+	for (int i = 0; this->text[i]; i++)
+	{
+		if (i == search)
+		{
+			this->outfile << this->s2;
+			i += size - 1;
+			search = this->text.find(this->s1, i);
+		}
+		else
+			this->outfile << this->text[i];
+	}
+	this->outfile.close();
+}
+
+void	FileReplacer::ft_error(int error)
+{
+	if (error == ERROR_OF)
+		std::cerr << "Something went wrong opening file" << std::endl;
+}
+
+void	FileReplacer::setS1(std::string& _s1)
+{
+	this->s1 = _s1;
+}
+
+void	FileReplacer::setS2(std::string& _s2)
+{
+	this->s2 = _s2;
 }
