@@ -1,5 +1,5 @@
 NAME		= phonebook
-
+HEADER		= PhoneBook.hpp Contact.hpp
 SRC			= main.cpp PhoneBook.cpp Contact.cpp
 
 OBJ			= $(SRC:.cpp=.o)
@@ -18,7 +18,7 @@ NC			= \033[0m
 
 all:	$(NAME)
 
-$(NAME): $(OBJ) Makefile
+$(NAME): $(OBJ) $(HEADER) Makefile
 	@${CPP} ${CPPFLAGS} ${OBJ} -o ${NAME}
 	@echo "$(GREEN)\n    PHONE BOOK COMPILED 📇\n$(NC)"
 

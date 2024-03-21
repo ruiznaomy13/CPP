@@ -1,6 +1,6 @@
 NAME		= megaphone
 
-SRC			= megaphone.cpp
+SRC			= Megaphone.cpp
 
 OBJ			= $(SRC:.cpp=.o)
 DEP			= $(SRC:.cpp=.d)
@@ -18,21 +18,20 @@ NC			= \033[0m
 
 all:	$(NAME)
 
-clean:
-	$(RM) $(OBJ) $(DEP)
-	@echo "$(RED)\nDELETED\n $(NC)"
-
-fclean:
-	$(RM) $(OBJ) $(DEP)
-	$(RM) $(NAME)
-
-re:	fclean all
-
 $(NAME): $(OBJ) Makefile
 	${CPP} ${CPPFLAGS} ${OBJ} -o ${NAME}
 	@echo "$(GREEN)\n✨ COMPILED ✨\n$(DEF_COLOR)"
 
 %.o: %.cpp
 	@$(CPP) $(CPPFLAGS) -c $< -o $@
+
+clean:
+	$(RM) $(OBJ) $(DEP)
+	@echo "$(RED)\nDELETED\n $(NC)"
+
+fclean: clean
+	$(RM) $(NAME)
+
+re:	fclean all
 
 .PHONY: all clean fclean re
