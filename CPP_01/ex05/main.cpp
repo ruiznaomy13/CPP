@@ -10,7 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	main(void)
+#include "Harl.hpp"
+
+int	main()
 {
-	
+	Harl	myHarl;
+
+	myHarl.complain("ERROR");
+	myHarl.complain("WARNING");
+	myHarl.complain("INFO");
+	myHarl.complain("DEBUG");
 }
