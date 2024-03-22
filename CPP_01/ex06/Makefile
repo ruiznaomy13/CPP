@@ -7,9 +7,9 @@
 #      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝░░╚═╝╚══════╝╚═╝░░░░░╚═╝╚══════╝╚══════╝      #
 # ************************************************************************ #
 
-NAME		= file_replace
-SRC			= main.cpp FileReplacer.cpp
-HEADER		= FileReplacer.hpp
+NAME		= harlFilter
+HEADER		= Harl.hpp
+SRC			= main.cpp Harl.cpp
 
 OBJ			= $(SRC:.cpp=.o)
 DEP			= $(SRC:.cpp=.d)
@@ -29,7 +29,7 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ) $(HEADER) Makefile
 			@${CPP} ${CPPFLAGS} ${OBJ} -o ${NAME}
-			@echo "$(GREEN)\n    COMPILED 📇\n$(NC)"
+			@echo "$(GREEN)\n   H A R L    C O M P I L E D \n$(NC)"
 
 %.o:	%.cpp
 		@$(CPP) $(CPPFLAGS) -c $< -o $@
