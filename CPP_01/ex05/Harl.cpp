@@ -6,12 +6,16 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 18:12:37 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/21 18:13:00 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:42:41 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
+void	Harl::complain(std::string level)
+{
+	_level = 
+}
 
 Harl::Harl() {}
 
