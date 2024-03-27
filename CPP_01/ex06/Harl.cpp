@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 18:12:37 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/26 17:04:20 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:06:02 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void    Harl::complain(std::string level)
 			error();
 			break;
 		default:
-			std::cout << "\n		Seems everything is OK!\n" << std::endl;
+			std::cout << "\n      [ Probably complaining about insignificant problems ]\n" << std::endl;
 			break;
 	}
 }
