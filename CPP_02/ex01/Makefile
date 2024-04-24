@@ -7,9 +7,9 @@
 #      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝░░╚═╝╚══════╝╚═╝░░░░░╚═╝╚══════╝╚══════╝      #
 # ************************************************************************ #
 
-NAME		= #TODO
-HEADER		= #TODO
-SRC			= main.cpp #TODO
+NAME		= fixed
+HEADER		= Fixed.hpp
+SRC			= main.cpp Fixed.cpp
 
 OBJ			= $(SRC:.cpp=.o)
 DEP			= $(SRC:.cpp=.d)
