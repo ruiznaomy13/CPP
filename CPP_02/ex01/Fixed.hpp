@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 17:43:55 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/24 18:54:37 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/04/25 10:50:17 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FIXED_HPP
 
 #include <iostream>
+#include <math.h>
 
 class Fixed
 {
@@ -36,5 +37,7 @@ class Fixed
 		float	toFloat(void) const; // cosnt: el objeto no es modificado internamente
 		int		toInt(void) const;
 };
+
+std::ostream& operator<<(std::ostream &out, const Fixed &fixed);
 
 #endif
