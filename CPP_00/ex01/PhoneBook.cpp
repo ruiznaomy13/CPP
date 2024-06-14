@@ -87,8 +87,9 @@ void PhoneBook::searchContact(void)
     std::string index;
     int         n_index;
 
-    if (!_contactNumber)
+    if (!_contactNumber) {
         return errorMsg(2);
+    }
 	std::cout << "\n     INDEX |       NAME |  LAST NAME |  NICK NAME" << std::endl;
 	std::cout << "---------------------------------------------------------" << std::endl;
     for (int i = 0; i < _contactNumber; i++)
