@@ -6,43 +6,33 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 18:24:08 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/14 18:05:29 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/06/17 17:37:25 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed() : num(0)
-{
-	std::cout << "Default constructor called" << std::endl;
-}
+Fixed::Fixed() : num(0) {}
 
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
-}
+Fixed::~Fixed() {}
 
 Fixed::Fixed(const int _num) : num(_num)
 {
-	std::cout << "Int constructor called" << std::endl;
 	num = _num << rawBits;
 }
 
 Fixed::Fixed(const float _num) : num(_num)
 {
-	std::cout << "Float constructor called" << std::endl;
 	num = roundf(_num * pow(2, rawBits));
 }
 
 Fixed::Fixed(const Fixed& other) : num(other.num)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 }
 
 Fixed&	Fixed::operator=(const Fixed& other)
 {
-	std::cout << "Copy  assignment operator called" << std::endl;
 	if (this != &other)
 		this->num = other.getRawBits();
 	return (*this);
@@ -94,10 +84,105 @@ Fixed	Fixed::operator/(const Fixed& other) const
 }
 
 // Comparision
-/* TODO */
+bool	Fixed::operator>(const class Fixed& compared) const
+{
+	if (this->num > compared.num)
+		return (true);
+	return (false);
+}
+
+bool	Fixed::operator<(const class Fixed& compared) const
+{
+	if (this->num < compared.num)
+		return (true);
+	return (false);
+}
+
+bool	Fixed::operator>=(const class Fixed& compared) const
+{
+	if (this->num >= compared.num)
+		return (true);
+	return (false);
+}
+
+bool	Fixed::operator<=(const class Fixed& compared) const
+{
+	if (this->num <= compared.num)
+		return (true);
+	return (false);
+}
+
+bool	Fixed::operator==(const class Fixed& compared) const
+{
+	if (this->num == compared.num)
+		return (true);
+	return (false);
+}
+
+bool	Fixed::operator!=(const class Fixed& compared) const
+{
+	if (this->num != compared.num)
+		return (true);
+	return (false);
+}
 
 // Incre/Decre-ment
-/* TODO */
+Fixed&  Fixed::operator++(void)
+{
+	++this->num;
+	return (*this);
+}
+
+Fixed  Fixed::operator++(int)
+{
+	Fixed a(*this);
+	a.setRawBits(this->num++);
+	return (a);
+}
+
+Fixed&  Fixed::operator--(void)
+{
+	--this->num;
+	return (*this);
+}
+
+Fixed  Fixed::operator--(int)
+{
+	Fixed a(*this);
+	a.setRawBits(this->num--);
+	return (a);
+}
+
+Fixed& Fixed::max(Fixed &a, Fixed &b)
+{
+	std::cout << "entre en la NO const" << std::endl;
+	if (a.num > b.num)
+		return (a);
+	return (b);
+}
+
+Fixed& Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a.num < b.num)
+		return (a);
+	return (b);
+}
+
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+	std::cout << "entre en la const" << std::endl;
+	if (a.num > b.num)
+		return (a);
+	return (b);
+}
+
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+{
+	if (a.num < b.num)
+		return (a);
+	return (b);
+}
+
 
 std::ostream&	operator<<(std::ostream &out, const Fixed &fixed)
 {
