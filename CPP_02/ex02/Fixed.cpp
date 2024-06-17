@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 18:24:08 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/17 17:37:25 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/06/17 19:07:02 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,6 @@ Fixed  Fixed::operator--(int)
 
 Fixed& Fixed::max(Fixed &a, Fixed &b)
 {
-	std::cout << "entre en la NO const" << std::endl;
 	if (a.num > b.num)
 		return (a);
 	return (b);
@@ -170,7 +169,6 @@ Fixed& Fixed::min(Fixed &a, Fixed &b)
 
 const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
 {
-	std::cout << "entre en la const" << std::endl;
 	if (a.num > b.num)
 		return (a);
 	return (b);
