@@ -6,16 +6,15 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:05:42 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/06 14:05:02 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/07/08 17:53:14 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-
 ClapTrap::ClapTrap()
 {
-	std::cout << BLUE"" << "Hi! I'm " << "no one" << std::endl;
+	std::cout << BLUE"" << "Hi! I'm <<no one>>" << NC"" << std::endl;
 	this->hitPoints = 10;
 	this->energyPoints = 10;
 	this->attackDamage = 0;
@@ -23,7 +22,7 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string _name) : name(_name)
 {
-	std::cout << BLUE"" << "Hi! I'm " << this->name << std::endl;
+	std::cout << BLUE"" << "Hi! I'm " << this->name << NC"" << std::endl;
 	this->hitPoints = 10;
 	this->energyPoints = 10;
 	this->attackDamage = 0;
@@ -31,7 +30,28 @@ ClapTrap::ClapTrap(std::string _name) : name(_name)
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << BLUE"" << "Bye bye! (" << this->name << ")" << std::endl; 
+	std::cout << BLUE"" << "Bye bye! (" << this->name << ")" << NC"" << std::endl; 
+}
+
+ClapTrap::ClapTrap(const ClapTrap& other) : name(other.name)
+{
+	std::cout << BLUE"Copy constructor called for " << NC"" << other.name << std::endl;
+	this->hitPoints = other.hitPoints;
+	this->attackDamage = other.attackDamage;
+	this->energyPoints = other.energyPoints;
+}
+
+ClapTrap& ClapTrap::operator=(const ClapTrap& other)
+{
+	if (this == &other)
+		return (*this);
+
+	std::cout << BLUE"Assignment operator called for " << other.name << NC"" << std::endl;
+	this->name = other.name;
+	this->hitPoints = other.hitPoints;
+	this->attackDamage = other.attackDamage;
+	this->energyPoints = other.energyPoints;
+	return (*this);
 }
 
 std::string	ClapTrap::getName(void)
@@ -48,7 +68,7 @@ void	ClapTrap::attack(const std::string& target)
 {
 	if (this->energyPoints < 1)
 	{
-		std::cout << YELLOW"" << this->name << " cannot atack because has 0 energy points" << std::endl;
+		std::cout << YELLOW"" << this->name << " cannot atack because has 0 energy points" << NC"" << std::endl;
 		return ;
 	}
 	std::cout << RED"" << this->name << " attacks " << target <<
@@ -80,10 +100,9 @@ void ClapTrap::beRepaired(unsigned int amount)
 	this->energyPoints--;
 }
 
-
 void    ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout << this->name << " has been attacked, he lost " << amount << " hit points!" << NC"" << std::endl;
+	std::cout << RED_B"" << this->name << " has been attacked, he lost " << amount << " hit points!" << NC"" << std::endl;
 	hitPoints -= amount;
 	if (hitPoints <= 0)
 	{

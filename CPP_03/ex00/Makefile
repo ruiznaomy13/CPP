@@ -20,7 +20,8 @@ all:	$(NAME)
 
 $(NAME): $(OBJ) Makefile
 	${CPP} ${CPPFLAGS} ${OBJ} -o ${NAME}
-	@echo "$(GREEN)\n✨ COMPILED ✨\n$(NC)
+	@echo "$(GREEN)\n✨ COMPILED ✨\n$(NC)"
+
 %.o: %.cpp
 	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
