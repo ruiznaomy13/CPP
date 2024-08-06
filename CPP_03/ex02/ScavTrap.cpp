@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:56:27 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/06 12:04:47 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/06 13:20:01 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-	_name = "no one";
+	_name = "<<no one>>";
 	_hitPoints = 100;
 	_energyPoints = 50;
 	_attackDamage = 20;
@@ -51,5 +51,6 @@ ScavTrap::~ScavTrap()
 
 void	ScavTrap::guardGate(void)
 {
-	std::cout << GREEN"[ScavTrap] " << _name << " in Gate keeper mode." << NC"" <<std::endl;
+	std::cout << GREEN"[ScavTrap] " << _name << " in Gate keeper mode."
+	<< NC"" <<std::endl;
 }
