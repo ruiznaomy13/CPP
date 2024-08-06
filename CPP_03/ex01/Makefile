@@ -1,22 +1,23 @@
-NAME		= ClapTRap
+NAME        = ClapTRap
 
-SRC			= main.cpp ClapTrap.cpp
+SRC         = main.cpp ClapTrap.cpp ScavTrap.cpp
+LIB         = ClapTRap.hpp ScavTrap.hpp
 
-OBJ			= $(SRC:.cpp=.o)
-DEP			= $(SRC:.cpp=.d)
+OBJ         = $(SRC:.cpp=.o)
+DEP         = $(SRC:.cpp=.d)
 
-CPP			= c++ -std=c++98
+CPP         = c++ -std=c++98
 
-CPPFLAGS	= -Wall -Wextra -Werror -MMD
+CPPFLAGS    = -Wall -Wextra -Werror -MMD
 
-RM			= rm -rf
+RM          = rm -rf
 
 ######## COLORS ########
-GREEN		= \033[1;92m
-RED			= \033[1;91m
-NC			= \033[0m
+GREEN       = \033[1;92m
+RED         = \033[1;91m
+NC          = \033[0m
 
-all:	$(NAME)
+all:    $(NAME)
 
 $(NAME): $(OBJ) Makefile
 	${CPP} ${CPPFLAGS} ${OBJ} -o ${NAME}
@@ -25,6 +26,8 @@ $(NAME): $(OBJ) Makefile
 %.o: %.cpp
 	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
+-include $(DEP)
+
 clean:
 	$(RM) $(OBJ) $(DEP)
 	@echo "$(RED)\nDELETED\n $(NC)"
@@ -32,6 +35,6 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re:	fclean all
+re: fclean all
 
 .PHONY: all clean fclean re

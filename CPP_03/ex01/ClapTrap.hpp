@@ -6,9 +6,12 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 12:50:10 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/08 17:54:31 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:08:33 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
 
 #include <iostream>
 
@@ -18,17 +21,17 @@
 # define YELLOW		"\x1b[33m"
 # define BLUE		"\x1b[34m"
 # define WHITE		"\e[1;37m"
-# define CYAN		"\x1b[36m"
+# define CYAN		"\x1b[1;36m"
 # define MAGENTA	"\033[95m"
 # define NC			"\033[0m"
 
 class ClapTrap
 {
-	private:
-		std::string	name;
-		int	hitPoints;
-		int	energyPoints;
-		int	attackDamage;
+	protected:
+		std::string	_name;
+		int			_hitPoints;
+		int			_energyPoints;
+		int			_attackDamage;
 
 	public:
 		ClapTrap();
@@ -44,3 +47,5 @@ class ClapTrap
 		void	beRepaired(unsigned int amount);
 		void	takeDamage(unsigned int amount);
 };
+
+#endif
