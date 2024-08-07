@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:32:42 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/07 13:40:32 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:14:37 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@
 
 int main(void)
 {
-    Animal  animal1;
-    Cat     cat1;
-    Dog     dog1;
+	Animal  animal1;
+	Animal	*cat1 = new Cat();
+	Animal	*dog1 = new Dog();
 
-    std::cout << "--------->> " << animal1.getType() << std::endl;
-    std::cout << "--------->> " << cat1.getType() << std::endl;
-    std::cout << "--------->> " << dog1.getType() << std::endl;
+	animal1.makeSound();
+	cat1->makeSound();
+	dog1->makeSound();
+	std::cout << "--------->> " << animal1.getType() << std::endl;
+	std::cout << "--------->> " << cat1->getType() << std::endl;
+	std::cout << "--------->> " << dog1->getType() << std::endl;
+	
+	delete cat1;
+	delete dog1;
 }

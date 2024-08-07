@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:31:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/07 13:32:12 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:12:22 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ class Dog : public Animal
 	public:
 		Dog();
 		~Dog();
+
+		void	makeSound( void );
 };
 
 #endif

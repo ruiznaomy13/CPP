@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:02:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/07 13:38:34 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:03:33 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,9 @@ Animal::~Animal()
 std::string	Animal::getType( void )
 {
 	return (_type);
+}
+
+void	Animal::makeSound( void )
+{
+	std::cout << "  * NOT SOUND *  " << std::endl;
 }
