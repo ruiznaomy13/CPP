@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 12:58:57 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/07 16:05:40 by ncastell         ###   ########.fr       */
+/*   Created: 2024/08/09 17:16:52 by ncastell          #+#    #+#             */
+/*   Updated: 2024/08/09 17:21:05 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
 #include <iostream>
 
-class Animal
+class WrongAnimal
 {
 	protected:
 		std::string	_type;
 
 	public:
-		Animal();
-		Animal(std::string type);
-		virtual	~Animal();
-
-		std::string	getType( void );
-		virtual	void	makeSound( void ); // un metodo abstracto obliga a redefinirlos
+		WrongAnimal();
+		WrongAnimal(std::string type);
+		virtual ~WrongAnimal();
+		
+		std::string		getType( void ) const;
+		virtual	void	makeSound( void ) const;
 };
 
 #endif

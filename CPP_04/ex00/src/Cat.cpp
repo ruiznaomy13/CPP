@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 13:09:20 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/07 16:04:19 by ncastell         ###   ########.fr       */
+/*   Created: 2024/08/07 13:12:35 by ncastell          #+#    #+#             */
+/*   Updated: 2024/08/09 17:09:36 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#include "../hdr/Cat.hpp"
 
-#include "Animal.hpp"
-
-class Cat : public Animal
+Cat::Cat() : Animal("Cat")
 {
-	public:
-		Cat();
-		~Cat();
+    std::cout << "[Cat] created" << std::endl;
+}
 
-	void	makeSound( void );
-};
+Cat::~Cat()
+{
+    std::cout << "[Cat] destroyed" << std::endl;
+}
 
-
-#endif
+void	Cat::makeSound( void ) const
+{
+	std::cout << " miau miau " << std::endl;
+}

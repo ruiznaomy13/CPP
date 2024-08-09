@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 13:12:35 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/07 16:10:40 by ncastell         ###   ########.fr       */
+/*   Created: 2024/08/09 17:08:13 by ncastell          #+#    #+#             */
+/*   Updated: 2024/08/09 17:28:43 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "../hdr/WrongCat.hpp"
 
-Cat::Cat() : Animal("Cat")
+WrongCat::WrongCat() : WrongAnimal("WrongCat")
 {
-    std::cout << "[Cat] created" << std::endl;
+    std::cout << "[WrongCat] created" << std::endl;
 }
 
-Cat::~Cat()
+WrongCat::~WrongCat()
 {
-    std::cout << "[Cat] destroyed" << std::endl;
+    std::cout << "[WrongCat] destroyed" << std::endl;
 }
 
-void	Cat::makeSound( void )
+void	WrongCat::makeSound( void )
 {
 	std::cout << " miau miau " << std::endl;
 }

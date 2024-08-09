@@ -9,8 +9,13 @@
 
 NAME		= Animal
 
-SRC			= main.cpp Animal.cpp Cat.cpp Dog.cpp
-LIB			= Animal.hpp DOG.hpp Cat.hpp
+DIR_SRC		= src
+SRC			= $(DIR_SRC)/main.cpp $(DIR_SRC)/Animal.cpp $(DIR_SRC)/Cat.cpp \
+			$(DIR_SRC)/Dog.cpp $(DIR_SRC)/WrongCat.cpp $(DIR_SRC)/WrongAnimal.cpp
+
+DIR_HDR		= hdr
+HDR			= $(DIR_HDR)/Animal.hpp $(DIR_HDR)/Dog.hpp $(DIR_HDR)/Cat.hpp \
+			$(DIR_HDR)/WrongCat.hpp $(DIR_HDR)/WrongAnimal.hpp
 
 OBJ			= $(SRC:.cpp=.o)
 DEP			= $(SRC:.cpp=.d)

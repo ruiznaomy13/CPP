@@ -6,11 +6,11 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:02:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/07 16:03:33 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:09:41 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "../hdr/Animal.hpp"
 
 Animal::Animal() : _type("<<no_type>>")
 {
@@ -27,12 +27,12 @@ Animal::~Animal()
 	std::cout << "[Animal] destroyed" << std::endl;
 }
 
-std::string	Animal::getType( void )
+std::string	Animal::getType( void ) const
 {
 	return (_type);
 }
 
-void	Animal::makeSound( void )
+void	Animal::makeSound( void ) const
 {
 	std::cout << "  * NOT SOUND *  " << std::endl;
 }

@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 13:31:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/07 16:12:22 by ncastell         ###   ########.fr       */
+/*   Created: 2024/08/07 13:31:31 by ncastell          #+#    #+#             */
+/*   Updated: 2024/08/09 17:09:46 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#include "../hdr/Dog.hpp"
 
-#include "Animal.hpp"
-
-class Dog : public Animal
+Dog::Dog() : Animal("Dog")
 {
-	public:
-		Dog();
-		~Dog();
+    std::cout << "[Dog] created" << std::endl;
+}
 
-		void	makeSound( void );
-};
+Dog::~Dog()
+{
+    std::cout << "[Dog]  destroyed" << std::endl;
+}
 
-#endif
+void	Dog::makeSound( void ) const
+{
+	std::cout << " woof woof " << std::endl;
+}
