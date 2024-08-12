@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:02:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/09 17:09:41 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:47:28 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@ Animal::Animal() : _type("<<no_type>>")
 Animal::Animal(std::string type) : _type(type)
 {
 	std::cout << "[Animal] " << _type << " created" << std::endl;
+}
+
+Animal::Animal(const Animal& other)
+{
+	std::cout << "[Animal] Copy constructpor called" << std::endl;
+	*this = other;
+}
+
+Animal& Animal::operator=(const Animal& other)
+{
+	if (this == &other)
+		return (*this);
+	std::cout << "[Animal] Assignment operator called for " << other._type << std::endl;
+	this->_type = other._type;
+	return (*this);
 }
 
 Animal::~Animal()

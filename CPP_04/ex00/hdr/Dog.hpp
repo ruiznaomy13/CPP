@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:31:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/09 17:16:26 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:49:21 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ class Dog : public Animal
 {
 	public:
 		Dog();
+		Dog(const Dog& other);
+		Dog& operator = (const Dog& other);
 		~Dog();
 
 		void	makeSound( void ) const;

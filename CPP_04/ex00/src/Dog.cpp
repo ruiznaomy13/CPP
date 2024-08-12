@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:31:31 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/09 17:09:46 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:02:39 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 Dog::Dog() : Animal("Dog")
 {
     std::cout << "[Dog] created" << std::endl;
+}
+
+Dog::Dog(const Dog& other) : Animal(other)
+{
+    std::cout << "[Dog] Copy constructpor called" << std::endl;
+}
+
+Dog& Dog::operator=(const Dog& other)
+{
+    if (this == &other)
+        return (*this);
+    Animal::operator=(other); 
+    return (*this);
 }
 
 Dog::~Dog()

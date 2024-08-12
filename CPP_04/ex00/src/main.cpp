@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:32:42 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/09 17:40:51 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/12 13:42:48 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ int main(void)
 
 	delete cat1;
 	delete dog1;
+	delete animal1;
 
-	std::cout << "\n --------------- WRONG POLIMORPHISM -----------------" << std::endl;
+	std::cout << "\n\n --------------- WRONG POLIMORPHISM -----------------" << std::endl;
 	const WrongAnimal*	wrong_animal1 = new WrongAnimal();
 	const WrongAnimal*	wrong_cat1 = new WrongCat();
 
@@ -43,4 +44,5 @@ int main(void)
 	std::cout << "--------->> " << wrong_cat1->getType() << std::endl;
 	
 	delete wrong_cat1;
+	delete wrong_animal1;
 }
