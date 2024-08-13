@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 12:58:57 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/14 01:51:01 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/14 01:53:19 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ class Animal
 		virtual	~Animal();
 
 		std::string	getType( void ) const;
-		virtual	void	makeSound( void ) const = 0; // metodo virtual
+		virtual	void	makeSound( void ) const = 0; // metodo virtual puro
 };
 
 #endif
