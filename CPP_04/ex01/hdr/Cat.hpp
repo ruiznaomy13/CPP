@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:09:20 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/12 17:41:30 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:44:07 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class Cat : public Animal
 		Cat& operator = (const Cat& other);
 		~Cat();
 
-		Brain& getBrain();
+		Brain*	getBrain( void );
 
 		void	makeSound( void ) const;
 };

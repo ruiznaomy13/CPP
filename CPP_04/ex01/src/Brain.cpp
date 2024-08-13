@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 16:46:43 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/12 17:03:39 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:36:38 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,24 @@ Brain& Brain::operator=(const Brain& other)
     if (this != &other)
     {
         for (int i = 0; i < 100; ++i)
-            this->ideas[i] = other.ideas[i];
+            _ideas[i] = other._ideas[i];
     }
     return *this;
+}
+
+void	Brain::setIdea(int pos_idea, std::string idea)
+{
+	if (pos_idea >= 0 && pos_idea < 100)
+		_ideas[pos_idea] = idea;
+	else
+		std::cout << "That idea dosn't exist" << std::endl;
+}
+
+std::string Brain::getIdea(int pos_idea)
+{
+	if ((pos_idea >= 0 && pos_idea < 100) && !_ideas[pos_idea].empty())
+		return _ideas[pos_idea];
+	return "THAT IDEA DOESN'T EXIST";
 }
 
 Brain::~Brain() { std::cout << "[Brain] Destroyed" << std::endl; }

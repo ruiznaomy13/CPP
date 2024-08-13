@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:31:31 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/13 19:47:35 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:27:25 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,9 @@ Dog::~Dog()
 	std::cout << "[Dog] Destroyed" << std::endl;
 }
 
-std::string Dog::getBrainIdea(int pos_idea)
+Brain*	Dog::getBrain( void )
 {
-	if (pos_idea >= 0 && pos_idea < 100)
-    	return (_brain->ideas[pos_idea]);
-	return ("That idea dosn't exist");
-}
-
-void    Dog::setBrainIdeas(std::string idea, int pos_idea)
-{
-	if (pos_idea >= 0 && pos_idea < 100)
-    	_brain->ideas[pos_idea] = idea;
-	else
-		std::cout << "That idea dosn't exist" << std::endl;
+	return (_brain);
 }
 
 void	Dog::makeSound( void ) const

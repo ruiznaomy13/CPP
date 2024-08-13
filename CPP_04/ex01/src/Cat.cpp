@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:12:35 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/12 17:44:19 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:44:03 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ Cat::~Cat()
 	delete _brain;
 	std::cout << "[Cat] Destroyed" << std::endl;
 }
+
+Brain*	Cat::getBrain( void )
+{
+	return (_brain);
+} 
 
 void	Cat::makeSound( void ) const
 {

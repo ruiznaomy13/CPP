@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:31:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/12 17:58:51 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/14 00:22:44 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ class Dog : public Animal
 		Dog& operator = (const Dog& other);
 		~Dog();
 
-		std::string getBrainIdea(int pos_idea);
-		void		setBrainIdeas(std::string idea, int pos_idea);
+		Brain*	getBrain( void );
 
 		void	makeSound( void ) const;
 };
