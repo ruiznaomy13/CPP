@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:32:42 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/12 17:25:32 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/13 19:48:49 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../hdr/WrongAnimal.hpp"
 #include "../hdr/WrongCat.hpp"
 
-#define NUM_ANIMALS	6
+#define NUM_ANIMALS	2
 
 int main() {
     Animal* animals[NUM_ANIMALS];
@@ -31,12 +31,13 @@ int main() {
 	std::cout << "\n -->> Testing deep copy" << std::endl;
     Dog real_dog;
     Dog copy_dog(real_dog); // Testing copy constructor
-    copy_dog = real_dog;     // Testing assignment operator
 
-    Cat real_cat;
-    Cat copy_cat(real_cat); // Testing copy constructor
-    copy_cat = real_cat;     // Testing assignment operator
-
+    
+    std::cout << "\n--------------------------------------" << std::endl;
+    copy_dog.setBrainIdeas("Me encantaria ir a la pradera\n", 1);
+    std::cout << copy_dog.getBrainIdea(1);
+    std::cout << real_dog.getBrainIdea(1);
+    
     std::cout << "\n-->> Deleting Animals" << std::endl;
     for (int i = 0; i < NUM_ANIMALS; ++i) {
         delete animals[i]; }
