@@ -3,10 +3,15 @@ using namespace std;
 
 float	divide(float f1, float f2)
 {
-	if (f2 == 0) {
-		throw 15;
-	} else {
-		return (f1 / f2);
+	try {
+		if (f2 == 0) {
+			throw 15;
+		} else {
+			return (f1 / f2);
+		}
+	}
+	catch (int error) {
+		
 	}
 }
 
@@ -19,7 +24,7 @@ int main ()
 	cin >> f2;
 
 	try {
-		cout << divide(f1, f2) << endl; 
+		cout << divide(f1, f2) << endl;
 	} catch (int e) { // got the exceptions and continue with the code
 		cerr << "ERROR!" << endl;
 	}
