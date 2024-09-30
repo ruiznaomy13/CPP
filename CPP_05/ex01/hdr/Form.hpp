@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:32:47 by ncastell          #+#    #+#             */
-/*   Updated: 2024/09/30 17:50:14 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/09/30 18:47:59 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Form
 		const std::string	_name;
 		const int			_signGrade;
 		const int			_execGrade;
-		bool				_sign = false;
+		bool				_sign;
 		
 		void	checkGrades(int grade);
 	public:
