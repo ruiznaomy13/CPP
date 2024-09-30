@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:55:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/09/30 13:32:36 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/09/30 17:46:19 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "Form.hpp"
 
 # define RED		"\x1b[31m"
 # define GREEN		"\x1b[32m"
@@ -25,7 +26,7 @@ class Bureaucrat
 {
 	private:
 		const std::string	_name;
-		int					_grade;
+		int					_grade;\
 
 	public:
 		Bureaucrat();
@@ -39,15 +40,17 @@ class Bureaucrat
 		std::string getName() const;
 		int	getGrade() const;
 
+		/* FUNCTIONS */
 		void	incrementGrade( void );
 		void	decrementGrade( void );
+		void	signForm(Form& form);
 
-		// customized exception TooHighGRade
+		// TooHighGRade exception
 		class GradeTooHighException : public std::exception {
 			public:
 				const char*	what() const throw();
 		};
-		// customized exception TooLowGRade
+		// TooLowGRade exception
 		class GradeTooLowException : public std::exception {
 			public:
 				const char*	what() const throw();
