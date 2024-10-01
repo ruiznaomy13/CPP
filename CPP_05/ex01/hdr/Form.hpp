@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:32:47 by ncastell          #+#    #+#             */
-/*   Updated: 2024/09/30 18:47:59 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:16:08 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "Bureaucrat.hpp"
 
-#include <iostream>
+class Bureaucrat;
 
 class Form
 {
@@ -34,10 +34,10 @@ class Form
 		~Form();
 
 		/* GETTERS */
-		bool		getSign( void );
-		int			getExecGrade( void );
-		int			getSignGrade( void );
-		std::string	getName( void );
+		std::string	getName( void ) const;
+		bool		getSign( void ) const;
+		int			getExecGrade( void ) const;
+		int			getSignGrade( void ) const;
 
 		/* FUNCTIONS */
 		void	beSigned(Bureaucrat& bureaucrat);
@@ -53,6 +53,6 @@ class Form
 		};
 };
 
-std::ostream& operator<<(std::ostream& out, const Form& form);
+std::ostream& operator<<(std::ostream& out, const Form* form);
 
 #endif

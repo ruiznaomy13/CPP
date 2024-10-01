@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:55:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/09/30 17:46:19 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:15:19 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@
 # define BLUE		"\x1b[34m"
 # define NC			"\033[0m"
 
+class	Form;
+
 class Bureaucrat
 {
 	private:
 		const std::string	_name;
-		int					_grade;\
+		int					_grade;
 
 	public:
 		Bureaucrat();
@@ -57,6 +59,6 @@ class Bureaucrat
 		};
 };
 
-std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
+std::ostream& operator<<(std::ostream& out, const Bureaucrat* bureaucrat);
 
 #endif

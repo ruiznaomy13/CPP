@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:08:47 by ncastell          #+#    #+#             */
-/*   Updated: 2024/09/30 17:29:56 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:23:30 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int Bureaucrat::getGrade( void ) const
     return (_grade);
 }
 
-/* Increment && Decrement functions */
+/* Functions */
 void    Bureaucrat::decrementGrade( void ) {
     if (_grade > 149) { throw GradeTooLowException(); }
     _grade++;
@@ -74,6 +74,15 @@ void    Bureaucrat::decrementGrade( void ) {
 void    Bureaucrat::incrementGrade( void ) {
     if (_grade < 2) { throw GradeTooHighException(); }
     _grade--;
+}
+
+void    Bureaucrat::signForm(Form& form) {
+    if (form.getSign()) {
+        std::cout << this->getName() << " signed " << form.getName() << std::endl;
+    } else {
+        std::cout << this->getName() << " couldn't sign " << form.getName() << \
+        " because the grade is too low!" << std::endl;
+    }
 }
 
 /* Exceptions */
@@ -86,8 +95,8 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
 }
 
 /* insertion operator overload */
-std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat)
+std::ostream& operator<<(std::ostream& out, const Bureaucrat* bureaucrat)
 {
-    out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+    out << "[BUREAUCRAT]\n" << bureaucrat->getName() << ", grade " << bureaucrat->getGrade() << std::endl;
     return (out);
 }
