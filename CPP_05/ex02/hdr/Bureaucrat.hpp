@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:55:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/05 12:33:16 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/05 16:59:57 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ class Bureaucrat
 			public:
 				const char*	what() const throw();
 		};
+		// NotSignedForm
 };
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat* bureaucrat);

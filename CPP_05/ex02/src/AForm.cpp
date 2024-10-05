@@ -1,87 +1,74 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AAForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:31:55 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/04 16:49:42 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/05 17:01:45 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdr/Form.hpp"
+#include "../hdr/AForm.hpp"
 
 /* Constructors */
-Form::Form() : _name("<<no one>>"), _signGrade(150), _execGrade(150) {
-	std::cout << BLUE"[FORM] Constructor called []" << NC"" << std::endl;
+AForm::AForm() : _name("<<no one>>"), _signGrade(150), _execGrade(150) {
+	std::cout << BLUE"[AFORM] Constructor called []" << NC"" << std::endl;
 }
 
-Form::Form(std::string name) : _name(name), _signGrade(150), _execGrade(150) {
-	std::cout << BLUE"[FORM] Constructor called (" << _name << ")" \
-	<< NC"" << std::endl;
-}
-
-Form::Form(short int signGrade, short int execGrade) : \
-_name("<<no one>>"), _signGrade(signGrade), _execGrade(execGrade) {
-	checkGrades(_execGrade);
-	checkGrades(_signGrade);
-	std::cout << BLUE"[FORM] Constructor called (" << _name << ", " \
-	<< _signGrade << ", " << _execGrade << ")" << NC"" << std::endl;
-}
-
-Form::Form(std::string name, short int signGrade, short int execGrade) : \
+AForm::AForm(std::string name, short int signGrade, short int execGrade) : \
 _name(name), _signGrade(signGrade), _execGrade(execGrade) {
 	checkGrades(_execGrade);
 	checkGrades(_signGrade);
-	std::cout << BLUE"[FORM] Constructor called (" << _name << ", " \
+	std::cout << BLUE"[AFORM] Constructor called (" << _name << ", " \
 	<< _signGrade << ", " << _execGrade << ")" << NC"" << std::endl;
 }
 
-Form::Form(const Form& other) : _name(other._name), _sign(other._sign), \
+AForm::AForm(const AForm& other) : _name(other._name), _sign(other._sign), \
 _execGrade(other._execGrade), _signGrade(other._signGrade) {
-	std::cout << BLUE"[FORM] Copy constructor called for " << this->_name << NC"" << std::endl;
+	std::cout << BLUE"[AFORM] Copy constructor called for " << this->_name << NC"" << std::endl;
 }
 
-Form& Form::operator = (const Form& other) {
+AForm& AForm::operator = (const AForm& other) {
 	if (this == &other)
 		return (*this);
-	std::cout << BLUE"[FORM] Assignment operator called for " << this->getName() << NC"" << std::endl;
+	std::cout << BLUE"[AFORM] Assignment operator called for " << this->getName() << NC"" << std::endl;
 	/* TODO */
 	return (*this);
 }
 
-Form::~Form() {
-	std::cout << RED"[FORM] " << _name << " Destructor called for " << \
+AForm::~AForm() {
+	std::cout << RED"[AFORM] " << _name << " Destructor called for " << \
 	this->_name << NC"" << std::endl;
 }
 
 /* Getters */
-bool    Form::getSign( void ) const {
+bool    AForm::getSign( void ) const {
 	return (this->_sign);
 }
 
-int Form::getExecGrade( void ) const {
+int AForm::getExecGrade( void ) const {
 	return (this->_execGrade);
 }
 
-int Form::getSignGrade( void ) const {
+int AForm::getSignGrade( void ) const {
 	return (this->_signGrade);
 }
 
-std::string Form::getName( void ) const {
+std::string AForm::getName( void ) const {
 	return (this->_name);
 }
 
 /* Functions */
-void    Form::beSigned(Bureaucrat& bureaucrat) {
+void    AForm::beSigned(Bureaucrat& bureaucrat) {
 	if (bureaucrat.getGrade() > _signGrade)	{
 		throw GradeTooLowException();
 	}
 	this->_sign = true;
 }
 
-void    Form::checkGrades(short int grade)
+void    AForm::checkGrades(short int grade)
 {
 	if (grade < 1) {
 		throw GradeTooHighException();
@@ -91,19 +78,23 @@ void    Form::checkGrades(short int grade)
 }
 
 /* Ecetions */
-const char* Form::GradeTooHighException::what() const throw() {
+const char* AForm::GradeTooHighException::what() const throw() {
     return ("The highest possible grade is 1!!");
 }
 
-const char* Form::GradeTooLowException::what() const throw() {
+const char* AForm::GradeTooLowException::what() const throw() {
     return ("The lowest possible grade is 150!!");
 }
 
+const char* AForm::NotSignedForm::what() const throw() {
+	return ("The form it's not signed!!");
+}
+
 /* insertion operator overload */
-std::ostream& operator<<(std::ostream& out, const Form* form) {
-	out << "[FORM]\nName: " << form->getName() << "\nExecution grade: " << form->getExecGrade() \
-	<< "\nSign grade: " << form->getSignGrade() << std::endl;
-	if (form->getSign()) {
+std::ostream& operator<<(std::ostream& out, const AForm* Aform) {
+	out << "[AFORM]\nName: " << Aform->getName() << "\nExecution grade: " << Aform->getExecGrade() \
+	<< "\nSign grade: " << Aform->getSignGrade() << std::endl;
+	if (Aform->getSign()) {
 		std::cout << "Sign: YES" << std::endl;
 	} else {
 		std::cout << "Sign: NO" << std::endl;
