@@ -9,14 +9,10 @@
 NAME        = Bureaucrat
 
 DIR_SRC     = src
-SRC         = $(DIR_SRC)/main.cpp $(DIR_SRC)/Bureaucrat.cpp $(DIR_SRC)/AForm.cpp \
-			$(DIR_SRC)/ShrubberyCreationForm.cpp $(DIR_SRC)/RobotomyRequestForm.cpp \
-			$(DIR_SRC)/PresidentialPardonForm.cpp
+SRC         = $(DIR_SRC)/main.cpp $(DIR_SRC)/Bureaucrat.cpp $(DIR_SRC)/Form.cpp
 
 DIR_HDR     = hdr
-HDR         = $(DIR_HDR)/Bureaucrat.hpp $(DIR_HDR)/AForm.hpp \ 
-			$(DIR_HDR)/ShrubberyCreationForm.hpp $(DIR_HDR)/RobotomyRequestForm.hpp \
-			$(DIR_HDR)/PresidentialPardonForm.hpp
+HDR         = $(DIR_HDR)/Bureaucrat.hpp $(DIR_HDR)/Form.hpp
 
 DIR_OBJ     = obj
 OBJ         = $(patsubst $(DIR_SRC)/%.cpp,$(DIR_OBJ)/%.o,$(SRC))
