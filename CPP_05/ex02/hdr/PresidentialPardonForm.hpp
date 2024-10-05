@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:17:02 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/05 14:17:03 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/05 17:22:58 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ class PresidentialPardonForm : public AForm
 	public:
 		PresidentialPardonForm(std::string target);
 		~PresidentialPardonForm();
+
+		void	execute( Bureaucrat& executor) const;
 };
 
 #endif

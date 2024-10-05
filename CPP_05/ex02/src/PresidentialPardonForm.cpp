@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:13:01 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/05 17:09:24 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/05 17:34:10 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,14 @@ PresidentialPardonForm::~PresidentialPardonForm()
 {
     std::cout << RED"[PresidentialPardonForm] Destructor called for " << \
 	this->_target << NC"" << std::endl;
+}
+
+void    PresidentialPardonForm::execute(Bureaucrat& executor) const {
+    if (executor.getGrade() > MIN_SIGN) {
+        throw GradeTooLowException();
+    } else if (this->getSign() == false) {
+        throw NotSignedForm();
+    } else {
+        std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+    }
 }

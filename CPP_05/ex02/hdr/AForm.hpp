@@ -29,6 +29,7 @@ class AForm
 		const short int		_execGrade;
 
 		void	checkGrades(short int grade);
+
 	public:
 		AForm();
 		AForm(std::string name, short int signGrade, short int execGrade);
