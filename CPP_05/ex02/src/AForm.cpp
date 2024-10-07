@@ -68,6 +68,25 @@ void    AForm::beSigned(Bureaucrat& bureaucrat) {
 	this->_sign = true;
 }
 
+void	AForm::execute(Bureaucrat& executor) const {
+	try {
+		checkExecute(executor);
+		executeImplement(executor);  // Llamar a la lógica específica de la clase derivada
+	}
+	catch (const std::exception& e) {
+		// Imprimir el mensaje de error específico de la clase
+		std::cerr << getErrorMsg() << ": " << e.what() << std::endl;
+		throw ;  // Re-lanzar la excepción si necesitas que se maneje en otro lugar
+	}
+}
+
+void	AForm::checkExecute(Bureaucrat& executor) const {
+    if (!_sign)
+        throw NotSignedForm();
+	if (executor.getGrade() > _execGrade)
+        throw GradeTooLowException();
+}
+
 void    AForm::checkGrades(short int grade)
 {
 	if (grade < 1) {
@@ -77,7 +96,7 @@ void    AForm::checkGrades(short int grade)
 	}
 }
 
-/* Ecetions */
+/* Exceptions */
 const char* AForm::GradeTooHighException::what() const throw() {
     return ("The highest possible grade is 1!!");
 }

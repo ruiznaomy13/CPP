@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:55:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/05 16:59:57 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:46:04 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ class Bureaucrat
 		void	incrementGrade( void );
 		void	decrementGrade( void );
 		void	signForm(AForm& form);
+		void	executeForm(const AForm& form);
 
 		// TooHighGRade exception
 		class GradeTooHighException : public std::exception {

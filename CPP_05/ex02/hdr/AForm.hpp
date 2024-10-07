@@ -15,9 +15,6 @@
 
 #include "Bureaucrat.hpp"
 
-#define	MIN_SIGN 25
-#define	MIN_EXEC 5
-
 class Bureaucrat;
 
 class AForm
@@ -29,6 +26,11 @@ class AForm
 		const short int		_execGrade;
 
 		void	checkGrades(short int grade);
+		void	checkExecute(Bureaucrat& executor) const;
+	
+	protected:
+		virtual void		executeImplement(Bureaucrat& executor) const = 0;
+		virtual std::string	getErrorMsg( void ) const = 0;
 
 	public:
 		AForm();
@@ -45,8 +47,8 @@ class AForm
 		int			getSignGrade( void ) const;
 
 		/* FUNCTIONS */
-		void			beSigned(Bureaucrat& bureaucrat);
-		virtual void	execute(Bureaucrat& executor) const = 0; // polimorfismo
+		void	beSigned(Bureaucrat& bureaucrat);
+		void	execute(Bureaucrat& executor) const;
 
 		/* EXCEPTIONS */
 		class	GradeTooHighException : public std::exception {
