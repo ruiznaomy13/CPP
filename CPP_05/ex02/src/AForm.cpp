@@ -17,16 +17,14 @@ AForm::AForm() : _name("<<no one>>"), _signGrade(150), _execGrade(150) {
 	std::cout << BLUE"[AFORM] Constructor called []" << NC"" << std::endl;
 }
 
-AForm::AForm(std::string name, short int signGrade, short int execGrade) : \
-_name(name), _signGrade(signGrade), _execGrade(execGrade) {
+AForm::AForm(std::string name, short int signGrade, short int execGrade) : _name(name), _signGrade(signGrade), _execGrade(execGrade) {
 	checkGrades(_execGrade);
 	checkGrades(_signGrade);
 	std::cout << BLUE"[AFORM] Constructor called (" << _name << ", " \
 	<< _signGrade << ", " << _execGrade << ")" << NC"" << std::endl;
 }
 
-AForm::AForm(const AForm& other) : _name(other._name), _sign(other._sign), \
-_execGrade(other._execGrade), _signGrade(other._signGrade) {
+AForm::AForm(const AForm& other) : _name(other._name), _sign(other._sign), _signGrade(other._signGrade), _execGrade(other._execGrade) {
 	std::cout << BLUE"[AFORM] Copy constructor called for " << this->_name << NC"" << std::endl;
 }
 
@@ -71,20 +69,20 @@ void    AForm::beSigned(Bureaucrat& bureaucrat) {
 void	AForm::execute(Bureaucrat& executor) const {
 	try {
 		checkExecute(executor);
-		executeImplement(executor);  // Llamar a la lógica específica de la clase derivada
+		executeImplement();  // Llamar a la lógica específica de la clase derivada
 	}
 	catch (const std::exception& e) {
 		// Imprimir el mensaje de error específico de la clase
-		std::cerr << getErrorMsg() << ": " << e.what() << std::endl;
-		throw ;  // Re-lanzar la excepción si necesitas que se maneje en otro lugar
+		std::cerr << YELLOW"" << getErrorMsg() << ": " << e.what() << NC"" << std::endl;
+		// throw ;  // Re-lanzar la excepción si necesitas que se maneje en otro lugar
 	}
 }
 
 void	AForm::checkExecute(Bureaucrat& executor) const {
-    if (!_sign)
-        throw NotSignedForm();
+	if (!_sign)
+		throw NotSignedForm();
 	if (executor.getGrade() > _execGrade)
-        throw GradeTooLowException();
+		throw GradeTooLowException();
 }
 
 void    AForm::checkGrades(short int grade)
@@ -102,7 +100,7 @@ const char* AForm::GradeTooHighException::what() const throw() {
 }
 
 const char* AForm::GradeTooLowException::what() const throw() {
-    return ("The lowest possible grade is 150!!");
+    return ("The grade it's too low!!");
 }
 
 const char* AForm::NotSignedForm::what() const throw() {

@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:17:02 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/07 13:40:10 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/07 20:51:15 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,14 @@ class PresidentialPardonForm : public AForm
 		std::string _target;
 
 	public:
+		PresidentialPardonForm();
 		PresidentialPardonForm(std::string target);
+		PresidentialPardonForm(const PresidentialPardonForm& other);
+		PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
+		
 		~PresidentialPardonForm();
 
-		void		executeImplement(Bureaucrat& executor) const;
+		void		executeImplement( void ) const;
 		std::string	getErrorMsg( void ) const;
 };
 

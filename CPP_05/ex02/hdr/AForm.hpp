@@ -20,8 +20,8 @@ class Bureaucrat;
 class AForm
 {
 	private:
-		bool				_sign;
 		const std::string	_name;
+		bool				_sign;
 		const short int		_signGrade;
 		const short int		_execGrade;
 
@@ -29,7 +29,7 @@ class AForm
 		void	checkExecute(Bureaucrat& executor) const;
 	
 	protected:
-		virtual void		executeImplement(Bureaucrat& executor) const = 0;
+		virtual void		executeImplement() const = 0;
 		virtual std::string	getErrorMsg( void ) const = 0;
 
 	public:
