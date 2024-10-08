@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:08:47 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/07 21:02:58 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:22:43 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ Bureaucrat::Bureaucrat() : _name("<<no one>>"), _grade(150) {
 }
 
 Bureaucrat::Bureaucrat(std::string name) : _name(name), _grade(150) { 
-	std::cout << BLUE"[BUREAUCRAT] Constructor called (" << _name << ")" << NC"" << std::endl;
+	std::cout << BLUE"[BUREAUCRAT] Constructor called (" << _name << ")" << \
+	NC"" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(int grade) : _name("<<no one>>"), _grade(grade) {
-	std::cout << BLUE"[BUREAUCRAT] Constructor called (" << _grade << ")" << NC"" << std::endl;
+	std::cout << BLUE"[BUREAUCRAT] Constructor called (" << _grade << ")" << \
+	NC"" << std::endl;
 	if (_grade < 1) {
 		throw GradeTooHighException();
 	} else if (_grade > 150) {
@@ -30,7 +32,8 @@ Bureaucrat::Bureaucrat(int grade) : _name("<<no one>>"), _grade(grade) {
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade) {
-	std::cout << BLUE"[BUREAUCRAT] Constructor called (" << _name << ", " << _grade<< ")" << NC"" << std::endl;
+	std::cout << BLUE"[BUREAUCRAT] Constructor called (" << _name << ", " \
+	<< _grade<< ")" << NC"" << std::endl;
 	if (grade < 1) {
 		throw GradeTooHighException();
 	} else if (grade > 150) {
@@ -38,20 +41,24 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 	}
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade) {
-	std::cout << BLUE"[BUREAUCRAT] Copy constructor called for " << this->_name << NC"" << std::endl;
+Bureaucrat::Bureaucrat(const Bureaucrat& other) \
+: _name(other._name), _grade(other._grade) {
+	std::cout << BLUE"[BUREAUCRAT] Copy constructor called for " << \
+	this->_name << NC"" << std::endl;
 }
 
 Bureaucrat& Bureaucrat::operator = (const Bureaucrat& other) {
 	if (this == &other)
 		return (*this);
-	std::cout << BLUE"[BUREAUCRAT] Assignment operator called for " << this->getName() << NC"" << std::endl;
+	std::cout << BLUE"[BUREAUCRAT] Assignment operator called for " << \
+	this->getName() << NC"" << std::endl;
 	this->_grade = other._grade;
 	return (*this);
 }
 
 Bureaucrat::~Bureaucrat() {
-	std::cout << RED"[BUREAUCRAT] " << _name << " Destructor called for " << this->_name << NC"" << std::endl;
+	std::cout << RED"[BUREAUCRAT] " << _name << " Destructor called for " \
+	<< this->_name << NC"" << std::endl;
 }
 
 /* Getters */
@@ -106,6 +113,7 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
 /* insertion operator overload */
 std::ostream& operator<<(std::ostream& out, const Bureaucrat* bureaucrat)
 {
-	out << "[BUREAUCRAT]\n" << bureaucrat->getName() << ", grade " << bureaucrat->getGrade() << std::endl;
+	out << "[BUREAUCRAT]\n" << bureaucrat->getName() << ", grade " << \
+	bureaucrat->getGrade() << std::endl;
 	return (out);
 }  

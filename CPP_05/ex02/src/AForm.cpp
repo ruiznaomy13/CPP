@@ -17,27 +17,30 @@ AForm::AForm() : _name("<<no one>>"), _signGrade(150), _execGrade(150) {
 	std::cout << BLUE"[AFORM] Constructor called []" << NC"" << std::endl;
 }
 
-AForm::AForm(std::string name, short int signGrade, short int execGrade) : _name(name), _signGrade(signGrade), _execGrade(execGrade) {
+AForm::AForm(std::string name, short int signGrade, short int execGrade) : \
+_name(name), _signGrade(signGrade), _execGrade(execGrade) {
 	checkGrades(_execGrade);
 	checkGrades(_signGrade);
 	std::cout << BLUE"[AFORM] Constructor called (" << _name << ", " \
 	<< _signGrade << ", " << _execGrade << ")" << NC"" << std::endl;
 }
 
-AForm::AForm(const AForm& other) : _name(other._name), _sign(other._sign), _signGrade(other._signGrade), _execGrade(other._execGrade) {
+AForm::AForm(const AForm& other) : _name(other._name), _sign(other._sign), \
+_signGrade(other._signGrade), _execGrade(other._execGrade) {
 	std::cout << BLUE"[AFORM] Copy constructor called for " << this->_name << NC"" << std::endl;
 }
 
 AForm& AForm::operator = (const AForm& other) {
 	if (this == &other)
 		return (*this);
-	std::cout << BLUE"[AFORM] Assignment operator called for " << this->getName() << NC"" << std::endl;
+	std::cout << BLUE"[AFORM] Assignment operator called for " << \
+	this->getName() << NC"" << std::endl;
 	/* TODO */
 	return (*this);
 }
 
 AForm::~AForm() {
-	std::cout << RED"[AFORM] " << _name << " Destructor called for " << \
+	std::cout << RED"[AFORM] Destructor called for " << \
 	this->_name << NC"" << std::endl;
 }
 

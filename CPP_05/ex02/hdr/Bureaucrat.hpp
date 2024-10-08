@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:55:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/07 13:46:04 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/08 12:44:02 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define GREEN		"\x1b[32m"
 # define YELLOW		"\x1b[33m"
 # define BLUE		"\x1b[34m"
+# define WHITE		"\x1b[1;37m"
 # define NC			"\033[0m"
 
 class	AForm;

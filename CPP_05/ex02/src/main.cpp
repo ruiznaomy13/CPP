@@ -6,15 +6,17 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:03:19 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/07 21:01:15 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/08 13:40:53 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdr/Bureaucrat.hpp"
 #include "../hdr/AForm.hpp"
 #include "../hdr/PresidentialPardonForm.hpp"
+#include "../hdr/RobotomyRequestForm.hpp"
 
-void	PresidentialPardonFormTest() {
+void	PresidentialPardonFormTest()
+{
 	try {
 		Bureaucrat	bob("Bob", 5);
 		Bureaucrat	tedy("tedy", 25);
@@ -23,7 +25,7 @@ void	PresidentialPardonFormTest() {
 		tedy2.decrementGrade();
 		std::cout << bob.getName() << " has a grade of " << bob.getGrade() << std::endl;
 		std::cout << tedy.getName() << " has a grade of " << tedy.getGrade() << std::endl;
-		std::cout << tedy2.getName() << " has a grade of " << tedy2.getGrade() << std::endl;
+		std::cout <<tedy2.getName() << " has a grade of " << tedy2.getGrade() << std::endl;
 
 		// Crear un formulario de perdón presidencial
 		PresidentialPardonForm pp_form("Target Person");
@@ -68,9 +70,65 @@ void	PresidentialPardonFormTest() {
 	}
 }
 
+void	RobotomyRequestFormTest()
+{
+	try {
+		Bureaucrat	bob("Bob", 40);
+		Bureaucrat	tedy("tedy", 72);
+		Bureaucrat	tedy2(tedy);
+
+		tedy2.decrementGrade();
+		std::cout << bob.getName() << " has a grade of " << bob.getGrade() << std::endl;
+		std::cout << tedy.getName() << " has a grade of " << tedy.getGrade() << std::endl;
+		std::cout <<tedy2.getName() << " has a grade of " << tedy2.getGrade() << std::endl;
+
+		// Crear un formulario de perdón presidencial
+		RobotomyRequestForm rr_form("Target Person");
+		std::cout << "Created rr_form: " << rr_form.getName() << std::endl;
+
+		// Intentar ejecutar el formulario sin firmarlo
+		try {
+			// "Trying to execute rr_form without signing..."
+			rr_form.execute(bob);
+		} catch (const AForm::NotSignedForm& e) {
+			std::cerr << YELLOW"Error: " << e.what() << NC"" << std::endl;
+		}
+
+		// Firmar el rr_formulario
+		bob.signForm(rr_form);
+
+		// Intentar ejecutar el rr_formulario después de firmarlo
+		try {
+			// with signing
+			rr_form.execute(bob);
+		} catch (const std::exception& e) {
+			std::cerr << YELLOW"Execution failed: " << e.what() << NC""  << std::endl;
+		}
+
+		tedy.signForm(rr_form);
+		try {
+			// with signing but not the grade
+			rr_form.execute(tedy);
+		} catch (const std::exception& e) {
+			std::cerr << YELLOW"Execution failed: " << e.what() << NC""  << std::endl;
+		}
+
+		tedy2.signForm(rr_form);
+		try {
+			// with signing but not the grade
+			rr_form.execute(tedy2);
+		} catch (const std::exception& e) {
+			std::cerr << YELLOW"Execution failed: " << e.what() << NC""  << std::endl;
+		}
+	} catch (const std::exception& e) {
+		std::cerr << YELLOW"An error occurred: " << e.what() << NC""  << std::endl;
+	}
+}
+
 int main()
 {
-	PresidentialPardonFormTest();
+	// PresidentialPardonFormTest();
+	RobotomyRequestFormTest();
 
 	return 0;
 }
