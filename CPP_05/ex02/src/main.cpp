@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:03:19 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/08 13:40:53 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/08 20:20:27 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../hdr/AForm.hpp"
 #include "../hdr/PresidentialPardonForm.hpp"
 #include "../hdr/RobotomyRequestForm.hpp"
+#include "../hdr/ShrubberyCreationForm.hpp"
 
 void	PresidentialPardonFormTest()
 {
@@ -125,10 +126,74 @@ void	RobotomyRequestFormTest()
 	}
 }
 
+void	ShrubberyCreationFormTest()
+{
+	try {
+		Bureaucrat	bob("Bob", 40);
+		Bureaucrat	tedy("tedy", 137);
+		Bureaucrat	nao("Nao", 146);
+		Bureaucrat	tedy2(tedy);
+
+		tedy2.decrementGrade();
+		std::cout << bob.getName() << " has a grade of " << bob.getGrade() << std::endl;
+		std::cout << tedy.getName() << " has a grade of " << tedy.getGrade() << std::endl;
+		std::cout <<tedy2.getName() << " has a grade of " << tedy2.getGrade() << std::endl;
+
+		// Crear un formulario de perdón presidencial
+		ShrubberyCreationForm sc_form("Target Person");
+		std::cout << "Created sc_form: " << sc_form.getName() << std::endl;
+
+		try {
+			// "Trying to execute sc_form without signing..."
+			nao.signForm(sc_form);
+		} catch (const std::exception& e) {
+			std::cerr << YELLOW"Error signing: " << e.what() << NC"" << std::endl;
+		}
+
+		// Intentar ejecutar el formulario sin firmarlo
+		try {
+			// "Trying to execute sc_form without signing..."
+			sc_form.execute(bob);
+		} catch (const AForm::NotSignedForm& e) {
+			std::cerr << YELLOW"Error: " << e.what() << NC"" << std::endl;
+		}
+
+		// Firmar el sc_formulario
+		bob.signForm(sc_form);
+
+		// Intentar ejecutar el sc_formulario después de firmarlo
+		try {
+			// with signing
+			sc_form.execute(bob);
+		} catch (const std::exception& e) {
+			std::cerr << YELLOW"Execution failed: " << e.what() << NC""  << std::endl;
+		}
+
+		tedy.signForm(sc_form);
+		try {
+			// with signing but not the grade
+			sc_form.execute(tedy);
+		} catch (const std::exception& e) {
+			std::cerr << YELLOW"Execution failed: " << e.what() << NC""  << std::endl;
+		}
+
+		tedy2.signForm(sc_form);
+		try {
+			// with signing but not the grade
+			sc_form.execute(tedy2);
+		} catch (const std::exception& e) {
+			std::cerr << YELLOW"Execution failed: " << e.what() << NC""  << std::endl;
+		}
+	} catch (const std::exception& e) {
+		std::cerr << YELLOW"An error occurred: " << e.what() << NC""  << std::endl;
+	}
+}
+
 int main()
 {
-	// PresidentialPardonFormTest();
+	PresidentialPardonFormTest();
 	RobotomyRequestFormTest();
+	ShrubberyCreationFormTest();
 
 	return 0;
 }
