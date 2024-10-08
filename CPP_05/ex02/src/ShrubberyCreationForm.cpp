@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:17:12 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/08 20:14:14 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/08 20:22:11 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,5 @@ void ShrubberyCreationForm::executeImplement( void ) const
 
 
 std::string ShrubberyCreationForm::getErrorMsg( void ) const {
-	return (_target + " no trees :(");
+	return (_target + " no trees :( ");
 }
