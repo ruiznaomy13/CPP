@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:08:47 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/08 12:22:43 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:04:33 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,10 @@ void    Bureaucrat::signForm(AForm& form) {
 void    Bureaucrat::executeForm(const AForm& form) {
 	try {
 		form.execute(*this);
-	} catch (const std::exception& e){
-		std::cerr << "Exception: " << e.what() << std::endl;   
+		std::cout << GREEN"" << this->_name << " executed " << form.getName() \
+		<< NC"" <<std::endl;
+	} catch (const std::exception& e) {
+		std::cerr << RED"Exception: " << e.what() << NC"" << std::endl;
 	}
 }
 

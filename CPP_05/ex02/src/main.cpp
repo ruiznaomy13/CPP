@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:03:19 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/08 20:20:27 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/09 14:08:53 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void	ShrubberyCreationFormTest()
 		Bureaucrat	tedy2(tedy);
 
 		tedy2.decrementGrade();
+		
 		std::cout << bob.getName() << " has a grade of " << bob.getGrade() << std::endl;
 		std::cout << tedy.getName() << " has a grade of " << tedy.getGrade() << std::endl;
 		std::cout <<tedy2.getName() << " has a grade of " << tedy2.getGrade() << std::endl;
@@ -142,6 +143,7 @@ void	ShrubberyCreationFormTest()
 		// Crear un formulario de perdón presidencial
 		ShrubberyCreationForm sc_form("Target Person");
 		std::cout << "Created sc_form: " << sc_form.getName() << std::endl;
+		std::cout << sc_form 
 
 		try {
 			// "Trying to execute sc_form without signing..."
@@ -162,6 +164,7 @@ void	ShrubberyCreationFormTest()
 		bob.signForm(sc_form);
 
 		// Intentar ejecutar el sc_formulario después de firmarlo
+		std::cout << "TESTING" << std::endl;
 		try {
 			// with signing
 			sc_form.execute(bob);
@@ -172,7 +175,8 @@ void	ShrubberyCreationFormTest()
 		tedy.signForm(sc_form);
 		try {
 			// with signing but not the grade
-			sc_form.execute(tedy);
+			tedy.executeForm(sc_form);
+			// sc_form.execute(tedy);
 		} catch (const std::exception& e) {
 			std::cerr << YELLOW"Execution failed: " << e.what() << NC""  << std::endl;
 		}
@@ -191,8 +195,8 @@ void	ShrubberyCreationFormTest()
 
 int main()
 {
-	PresidentialPardonFormTest();
-	RobotomyRequestFormTest();
+	// PresidentialPardonFormTest();
+	// RobotomyRequestFormTest();
 	ShrubberyCreationFormTest();
 
 	return 0;

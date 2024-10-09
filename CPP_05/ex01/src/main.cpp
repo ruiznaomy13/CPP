@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:03:19 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/01 16:34:24 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:52:00 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 int main(void)
 {
 	{
-		std::cout << "Constructing" << std::endl;
 		Bureaucrat *a = new Bureaucrat(71);
-		Form *b = new Form(70, 70);
+		Form *b = new Form(70, 69);
 		std::cout << std::endl;
 
-		std::cout << "        >>>>>>>>>>> Testing <<<<<<<<<<<<" << std::endl;
+		std::cout << GREEN"\t>>>>>>>>>>>>>>>>>>>>>> Testing <<<<<<<<<<<<<<<<<<<<<<<<" << NC"\n" << std::endl;
 		std::cout << a << std::endl;
 		std::cout << b << std::endl;
 
@@ -29,72 +28,72 @@ int main(void)
 		{
 			b->beSigned(*a);
 		}
-		catch (std::exception& e)
+		catch(std::exception& e)
 		{
-			a->signForm(*b);
+			std::cerr << YELLOW"" << a->getName() << " was not able to sign the Form " << \
+			b->getName() << ": " << e.what() << NC"" << std::endl;
 		}
 
 		std::cout << b;
 		std::cout << std::endl;
 
-		std::cout << "Deconstructing" << std::endl;
 		delete a;
 		delete b;
 		std::cout << std::endl;
 	}
-	std::cout << "-----------------------------------------------------------------" << std::endl;
-	{
-		std::cout << std::endl;
 
-		std::cout << "Constructing" << std::endl;
+	std::cout << "-----------------------------------------------------------------\n" << std::endl;
+
+	{
 		Bureaucrat *a = new Bureaucrat("Assistant", 145);
 		Bureaucrat *b = new Bureaucrat("CEO", 1);
 		Form *c = new Form("Rent Contract", 140, 100);
 		std::cout << std::endl;
 
-		std::cout << "        >>>>>>>>>>> Testing <<<<<<<<<<<<" << std::endl;
-		std::cout << a;
-		std::cout << b;
-		std::cout << c;
+		std::cout << GREEN"\t>>>>>>>>>>>>>>>>>>>>>> Testing <<<<<<<<<<<<<<<<<<<<<<<<" << NC"\n" << std::endl;
+		std::cout << a << std::endl;
+		std::cout << b << std::endl;
+		std::cout << c << std::endl;
 
 		// Assistant signs the Form
 		try
 		{
 			a->signForm(*c);
 		}
-		catch(Bureaucrat::GradeTooLowException &e)
+		catch(std::exception& e)
 		{
-			std::cerr << "\033[33m" << a->getName() << " was not able to sign the Form " << c->getName() << ": " << e.what() << "" << std::endl;
+			std::cerr << YELLOW"" << a->getName() << " was not able to sign the Form " << \
+			c->getName() << ": " << e.what() << NC"" << std::endl;
 		}
 
 		// CEO signs the Form
-		std::cout << c;
+		std::cout << c << std::endl;
 		try
 		{
 			c->beSigned(*b);
 			// b->signForm(*c);
 		}
-		catch(Bureaucrat::GradeTooLowException &e)
+		catch(std::exception& e)
 		{
-			std::cerr << "\033[33m" << b->getName() << " was not able to sign the Form " << c->getName() << ": " << e.what() << "" << std::endl;
+			std::cerr << "\033[33m" << b->getName() << " was not able to sign the Form " << \
+			c->getName() << ": " << e.what() << NC"" << std::endl;
 		}
-		std::cout << c;
+		std::cout << c << std::endl;
 
 		// try signing the from again
 		b->signForm(*c);
 		std::cout << std::endl;
 
-		std::cout << "Deconstructing" << std::endl;
 		delete a;
 		delete b;
 		delete c;
 		std::cout << std::endl;
 	}
-	std::cout << "------------------------------------------------------------------" << std::endl;
-	{
-		std::cout << std::endl;
 
-		std::cout << "Constructing" << std::endl;
+	std::cout << "------------------------------------------------------------------\n" << std::endl;
+
+	{
+		std::cout << GREEN"\t>>>>>>>>>>>>>>>>>>>>>> Testing <<<<<<<<<<<<<<<<<<<<<<<<" << NC"\n" << std::endl;	
 		Form *a = NULL;
 
 		// sign-grade too high
@@ -141,14 +140,8 @@ int main(void)
 			e.what() << "" << std::endl;
 		}
 
-		// Deconstruction to prevent unused variable, in this case will never be called
 		if (a != NULL)
-		{
-			std::cout << std::endl;
-			std::cout << "Deconstructing" << std::endl;
 			delete a;
-		}
-		std::cout << std::endl;
 	}
 	return (0);
 }

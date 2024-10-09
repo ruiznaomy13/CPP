@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:32:47 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/04 16:41:44 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:16:03 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ class Bureaucrat;
 class Form
 {
 	private:
-		bool				_sign;
 		const std::string	_name;
+		bool				_sign;
 		const short int		_signGrade;
 		const short int		_execGrade;
 		
 		void	checkGrades(short int grade);
+
 	public:
 		Form();
 		Form(std::string name);

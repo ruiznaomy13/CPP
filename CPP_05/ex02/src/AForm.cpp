@@ -62,26 +62,27 @@ std::string AForm::getName( void ) const {
 }
 
 /* Functions */
-void    AForm::beSigned(Bureaucrat& bureaucrat) {
+void    AForm::beSigned(Bureaucrat& bureaucrat)
+{
 	if (bureaucrat.getGrade() > _signGrade)	{
 		throw GradeTooLowException();
 	}
 	this->_sign = true;
 }
 
-void	AForm::execute(Bureaucrat& executor) const {
+void	AForm::execute(Bureaucrat& executor) const
+{
 	try {
 		checkExecute(executor);
-		executeImplement();  // Llamar a la lógica específica de la clase derivada
+		executeImplement();
 	}
 	catch (const std::exception& e) {
-		// Imprimir el mensaje de error específico de la clase
 		std::cerr << YELLOW"" << getErrorMsg() << ": " << e.what() << NC"" << std::endl;
-		// throw ;  // Re-lanzar la excepción si necesitas que se maneje en otro lugar
 	}
 }
 
-void	AForm::checkExecute(Bureaucrat& executor) const {
+void	AForm::checkExecute(Bureaucrat& executor) const
+{
 	if (!_sign)
 		throw NotSignedForm();
 	if (executor.getGrade() > _execGrade)
@@ -111,13 +112,15 @@ const char* AForm::NotSignedForm::what() const throw() {
 }
 
 /* insertion operator overload */
-std::ostream& operator<<(std::ostream& out, const AForm* Aform) {
-	out << "[AFORM]\nName: " << Aform->getName() << "\nExecution grade: " << Aform->getExecGrade() \
+std::ostream& operator<<(std::ostream& out, const AForm* Aform)
+{
+	out << "[AFORM]\nName: " << Aform->getName() << \
+	"\nExecution grade: " << Aform->getExecGrade() \
 	<< "\nSign grade: " << Aform->getSignGrade() << std::endl;
 	if (Aform->getSign()) {
-		std::cout << "Sign: YES" << std::endl;
+		out << "Signed: YES" << std::endl;
 	} else {
-		std::cout << "Sign: NO" << std::endl;
+		out << "Signed: NO" << std::endl;
 	}
 	return (out);
 }
