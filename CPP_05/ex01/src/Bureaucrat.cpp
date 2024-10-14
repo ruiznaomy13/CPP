@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:08:47 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/09 13:54:21 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/14 20:25:53 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,14 @@ void    Bureaucrat::incrementGrade( void ) {
     _grade--;
 }
 
-void    Bureaucrat::signForm(Form& form) {
-    if (form.getSign()) {
-        std::cout << this->getName() << " signed " << form.getName() << std::endl;
-    } else {
-        std::cout << this->getName() << " couldn't sign " << form.getName() << \
-        " because the grade is too low!" << std::endl;
-        throw GradeTooHighException();
-    }
+void	Bureaucrat::signForm(Form& form) {
+	if (this->_grade > form.getSignGrade()) {
+		std::cout << this->getName() << " couldn't sign " << form.getName() << \
+		" because the grade is too low!" << std::endl;
+	} else {
+		form.beSigned(*this);
+		std::cout << this->getName() << " signed " << form.getName() << std::endl;
+	}
 }
 
 /* Exceptions */
