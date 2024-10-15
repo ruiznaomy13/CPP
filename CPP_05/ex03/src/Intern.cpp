@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 20:28:55 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/15 19:42:13 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/15 21:16:31 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,25 @@
 //     formTypes[3] = FormType{0, 0};
 // }
 
-Intern::Intern() {
-    formTypes[0] = FormType("PRESIDENTIAL PARDON", createPresidentialPardon);
-    formTypes[1] = FormType("ROBOTOMY REQUEST", createRobotomyRequest);
-    formTypes[2] = FormType("SHRUBBERY CREATION", createShrubberyCreation);
+Intern::Intern()
+{
+    std::cout << BLUE "[INTERN] Constructor called" << NC"" << std::endl;
+
+
+    formTypes[0].formName = "PRESIDENTIAL PARDON";
+    formTypes[0].createFormFunction = createPresidentialPardon;
+
+    formTypes[1].formName = "ROBOTOMY REQUEST";
+    formTypes[1].createFormFunction = createRobotomyRequest;
+
+    formTypes[2].formName = "SHRUBBERY CREATION";
+    formTypes[2].createFormFunction = createShrubberyCreation;
 }
+
 
 Intern::~Intern()
 {
-    std::cout << RED"[INTERN] Destructor called" << std::endl;
+    std::cout << RED"[INTERN] Destructor called" << NC"" << std::endl;
 }
 
 AForm *Intern::createPresidentialPardon(std::string target)

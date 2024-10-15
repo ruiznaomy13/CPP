@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:03:19 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/15 19:37:44 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/15 21:17:12 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ int main()
 	Intern	someRandomIntern;
 	AForm	*rrf;
 
-	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	rrf = someRandomIntern.makeForm("Robotomy request", "Bender");
 
-	return 0;
+	delete rrf;
+
+	return (0);
 }
 
