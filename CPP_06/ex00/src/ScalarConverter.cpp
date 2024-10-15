@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 17:03:19 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/15 19:37:44 by ncastell         ###   ########.fr       */
+/*   Created: 2024/10/14 18:00:42 by ncastell          #+#    #+#             */
+/*   Updated: 2024/10/14 18:19:52 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdr/Bureaucrat.hpp"
-#include "../hdr/AForm.hpp"
-#include "../hdr/PresidentialPardonForm.hpp"
-#include "../hdr/RobotomyRequestForm.hpp"
-#include "../hdr/ShrubberyCreationForm.hpp"
-#include "../hdr/Intern.hpp"
+#include "../hdr/ScalarConverter.hpp"
 
-int main()
+ScalarConverter::ScalarConverter()
 {
-	Intern	someRandomIntern;
-	AForm	*rrf;
-
-	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-
-	return 0;
+	std::cout << "[SCALAR CONVERTER] Constructor called!" <<  std::endl;
 }
 
+ScalarConverter::~ScalarConverter()
+{
+	std::cout << "[SCALAR CONVERTER] Destructor called!" <<  std::endl;
+}
+
+void ScalarConverter::convert(std::string strConvert)
+{
+    
+}

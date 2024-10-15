@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:57:27 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/08 20:02:24 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:28:11 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 #define	MIN_SIGN_SCF 145
 #define	MIN_EXEC_SCF 137
 
-#include <fstream>
 #include "AForm.hpp"
+
+#include <fstream>
 
 class ShrubberyCreationForm : public AForm
 {

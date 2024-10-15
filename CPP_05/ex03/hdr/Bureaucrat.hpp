@@ -6,15 +6,16 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 11:55:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/08 12:44:02 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:28:00 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-#include <iostream>
 #include "AForm.hpp"
+
+#include <iostream>
 
 # define RED		"\x1b[31m"
 # define GREEN		"\x1b[32m"

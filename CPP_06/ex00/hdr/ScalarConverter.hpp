@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 17:03:19 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/15 19:37:44 by ncastell         ###   ########.fr       */
+/*   Created: 2024/10/14 18:01:43 by ncastell          #+#    #+#             */
+/*   Updated: 2024/10/14 18:19:46 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdr/Bureaucrat.hpp"
-#include "../hdr/AForm.hpp"
-#include "../hdr/PresidentialPardonForm.hpp"
-#include "../hdr/RobotomyRequestForm.hpp"
-#include "../hdr/ShrubberyCreationForm.hpp"
-#include "../hdr/Intern.hpp"
+#ifndef SCALAR_CONVERTER_HPP
+# define SCALAR_CONVERTER_HPP
 
-int main()
+#include <iostream>
+
+class ScalarConverter
 {
-	Intern	someRandomIntern;
-	AForm	*rrf;
+	private:
+		ScalarConverter();
+		~ScalarConverter();
+	
+	public:
+		static void 	convert(std::string strConvert);
+};
 
-	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-
-	return 0;
-}
-
+#endif

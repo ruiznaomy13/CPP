@@ -6,21 +6,21 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:13:01 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/08 12:48:12 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/15 17:26:01 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdr/PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm() : \
-AForm("<target> Presidential Pardon Form", MIN_SIGN_PPF, MIN_EXEC_PPF)
+AForm("Presidential Pardon Form", MIN_SIGN_PPF, MIN_EXEC_PPF)
 {
 	std::cout << BLUE"[PresidentialPardonForm] Constructor called" << NC"" << std::endl;
 	_target = "<target>";
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : \
-AForm(target + " Presidential Pardon Form", MIN_SIGN_PPF, MIN_EXEC_PPF)
+AForm("Presidential Pardon Form", MIN_SIGN_PPF, MIN_EXEC_PPF)
 {
 	std::cout << BLUE"[PresidentialPardonForm] Constructor called" << NC"" << std::endl;
 	_target = target;
