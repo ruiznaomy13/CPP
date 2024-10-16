@@ -6,21 +6,21 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:13:01 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/15 17:26:01 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:01:02 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdr/PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm() : \
-AForm("Presidential Pardon Form", MIN_SIGN_PPF, MIN_EXEC_PPF)
+AForm("Presidential Pardon", MIN_SIGN_PPF, MIN_EXEC_PPF)
 {
 	std::cout << BLUE"[PresidentialPardonForm] Constructor called" << NC"" << std::endl;
 	_target = "<target>";
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : \
-AForm("Presidential Pardon Form", MIN_SIGN_PPF, MIN_EXEC_PPF)
+AForm("Presidential Pardon", MIN_SIGN_PPF, MIN_EXEC_PPF)
 {
 	std::cout << BLUE"[PresidentialPardonForm] Constructor called" << NC"" << std::endl;
 	_target = target;
@@ -47,10 +47,10 @@ PresidentialPardonForm::~PresidentialPardonForm()
 }
 
 void    PresidentialPardonForm::executeImplement( void ) const {
-	std::cout << GREEN"" << _target << " has been pardoned by Zaphod Beeblebrox." << \
+	std::cout << GREEN"" << _target << " has been pardoned by Zaphod Beeblebrox" << \
 	NC"" << std::endl;
 }
 
 std::string PresidentialPardonForm::getErrorMsg( void ) const {
-	return (_target + " hasn't been pardoned by Zaphod Beeblebrox.");
+	return (_target + " hasn't been pardoned by Zaphod Beeblebrox");
 }

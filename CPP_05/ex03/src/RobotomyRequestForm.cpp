@@ -6,21 +6,21 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:15:50 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/08 13:43:49 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:12:24 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdr/RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm() : \
-AForm("<target> Presidential Pardon Form", MIN_SIGN_RRF, MIN_EXEC_RRF)
+AForm("Robotomy Pardon", MIN_SIGN_RRF, MIN_EXEC_RRF)
 {
     std::cout << BLUE"[RobotomyRequestForm] Constructor called" << NC"" << std::endl;
     _target = "<target>";
 }
 
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : \
-AForm(target + " Presidential Pardon Form", MIN_SIGN_RRF, MIN_EXEC_RRF)
+AForm("Robotomy Pardon", MIN_SIGN_RRF, MIN_EXEC_RRF)
 {
     std::cout << BLUE"[RobotomyRequestForm] Constructor called" << NC"" << std::endl;
     _target = target;

@@ -6,21 +6,21 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 14:17:12 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/08 20:22:11 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/16 18:13:10 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdr/ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm() : \
-AForm("<target> Presidential Pardon Form", MIN_SIGN_SCF, MIN_EXEC_SCF)
+AForm("<target> Shrubbery Creation Form", MIN_SIGN_SCF, MIN_EXEC_SCF)
 {
 	std::cout << BLUE"[ShrubberyCreationForm] Constructor called" << NC"" << std::endl;
 	_target = "<target>";
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : \
-AForm(target + " Presidential Pardon Form", MIN_SIGN_SCF, MIN_EXEC_SCF)
+AForm(target + " Shrubbery Creation Form", MIN_SIGN_SCF, MIN_EXEC_SCF)
 {
 	std::cout << BLUE"[ShrubberyCreationForm] Constructor called" << NC"" << std::endl;
 	_target = target;
