@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:03:19 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/16 18:59:37 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/16 19:06:51 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main()
 {
 	Intern intern;
 
-	Bureaucrat bob("Bob", 26);
+	Bureaucrat bob("Bob", 20);
 
 	std::cout << WHITE"\n\t--------------- TEST 1 ----------------" << NC"" << std::endl;
 	AForm *pardonForm = intern.makeForm("presidential pardon", "Alice");
