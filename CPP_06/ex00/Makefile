@@ -6,13 +6,13 @@
 #      ██║ ╚═╝ ██║██║  ██║██║░╚██╗███████╗██║░░░░░██║███████╗███████╗      #
 #      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝░░╚═╝╚══════╝╚═╝░░░░░╚═╝╚══════╝╚══════╝      #
 # ************************************************************************ #
-NAME        = Bureaucrat
+NAME        = scalarConverter
 
 DIR_SRC     = src
-SRC         = $(DIR_SRC)/main.cpp $(DIR_SRC)/Bureaucrat.cpp
+SRC         = $(DIR_SRC)/main.cpp $(DIR_SRC)/ScalarConverter.cpp
 
 DIR_HDR     = hdr
-HDR         = $(DIR_HDR)/Bureaucrat.hpp
+HDR         = $(DIR_HDR)/ScalarConverter.hpp
 
 DIR_OBJ     = obj
 OBJ         = $(patsubst $(DIR_SRC)/%.cpp,$(DIR_OBJ)/%.o,$(SRC))
