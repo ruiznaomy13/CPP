@@ -9,7 +9,7 @@
 NAME        = Bureaucrat
 
 DIR_SRC     = src
-SRC         = $(DIR_SRC)/main.cpp $(DIR_SRC)/Bureaucrat.cpp
+SRC         = $(DIR_SRC)/main.cpp 
 
 DIR_HDR     = hdr
 HDR         = $(DIR_HDR)/Bureaucrat.hpp
