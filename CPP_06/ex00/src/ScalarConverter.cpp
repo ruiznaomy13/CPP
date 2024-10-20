@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:00:42 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/20 20:59:02 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/20 21:32:06 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,21 @@
 #include <limits>
 #include <cctype>
 
-ScalarConverter::ScalarConverter() {}
+ScalarConverter::ScalarConverter() {
+	std::cout << "[SCALAR CONVERTER] Constructor Called." << std::endl;
+}
 
-ScalarConverter::~ScalarConverter() {}
+ScalarConverter::ScalarConverter(const ScalarConverter& other) {
+	std::cout << "[SCALAR CONVERTER] Copy Constructor." << std::endl;
+}
+
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
+	std::cout << "[SCALAR CONVERTER] Copy Assignmet Operator." << std::endl;
+}
+
+ScalarConverter::~ScalarConverter() {
+	std::cout << "[SCALAR CONVERTER] Destructor." << std::endl;
+}
 
 void ScalarConverter::convert(const std::string& literal)
 {
@@ -81,12 +93,14 @@ void ScalarConverter::printFloat(double value)
 }
 
 // Imprime las conversiones para un double
-void ScalarConverter::printDouble(double value) {
+void ScalarConverter::printDouble(double value)
+{
 	std::cout << "double: " << value << "" << std::endl;
 }
 
 // Manejo de pseudo-literals (nan, inf, etc.)
-bool ScalarConverter::isPseudoLiteral(const std::string& literal) {
+bool ScalarConverter::isPseudoLiteral(const std::string& literal)
+{
 	if (literal == "nanf" || literal == "+inff" || literal == "-inff")
 		return (1);
 	else if (literal == "nan"  || literal == "+inf"  || literal == "-inf")

@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:01:43 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/20 19:37:24 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/20 21:29:23 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ class ScalarConverter
 {
 	private:
 		ScalarConverter();
+		ScalarConverter(const ScalarConverter& other);
+		ScalarConverter& operator=(const ScalarConverter& other);
 		~ScalarConverter();
 
 		static void printChar(double value);
