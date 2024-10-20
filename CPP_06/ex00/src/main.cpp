@@ -6,23 +6,18 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:34:41 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/17 19:54:50 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/20 20:58:58 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdr/ScalarConverter.hpp"
+#include "ScalarConverter.hpp"
 
-int main(int argc, char* argv[])
+int main(int ac, char* av[])
 {
-    if (argc < 2) {
-        std::cout << "Uso: " << argv[0] << " <cadena>" << std::endl;
-        return 1; // Salir si no se proporciona argumento
-    }
-
-    std::string input = argv[1]; // Obtener el argumento de la línea de comandos
-
-    // castAndDisplay(input);
-	std::cout << argv[1] << std::endl;
-
-    return 0;
+	if (ac != 2) {
+		std::cout << "Try this: " << av[0] << " <input>" << std::endl;
+		return (EXIT_FAILURE);
+	}
+	ScalarConverter::convert(av[1]);
+	return (0);
 }

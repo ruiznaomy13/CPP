@@ -19,7 +19,7 @@ OBJ         = $(patsubst $(DIR_SRC)/%.cpp,$(DIR_OBJ)/%.o,$(SRC))
 DEP         = $(patsubst $(DIR_SRC)/%.cpp,$(DIR_OBJ)/%.d,$(SRC))
 
 CPP         = c++ -std=c++98
-CPPFLAGS    = -Wall -Wextra -Werror -MMD
+CPPFLAGS    = -Wall -Wextra -Werror -MMD -I$(DIR_HDR)
 RM          = rm -rf
 
 ######## COLORS ########

@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:01:43 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/17 16:56:27 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/20 19:37:24 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define BLUE		"\x1b[34m"
 # define WHITE		"\x1b[1;37m"
 # define NC			"\033[0m"
+#include "../hdr/ScalarConverter.hpp"
 
 class ScalarConverter
 {
