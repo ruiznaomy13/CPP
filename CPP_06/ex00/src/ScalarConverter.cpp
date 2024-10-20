@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:00:42 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/20 21:32:06 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/20 21:34:15 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void ScalarConverter::convert(const std::string& literal)
 	printDouble(value);
 }
 
-// Imprime las conversiones para un char
 void ScalarConverter::printChar(double value)
 {
 	if (value < 0 || value > 127 || !std::isprint(static_cast<int>(value)))
@@ -72,7 +71,6 @@ void ScalarConverter::printChar(double value)
 		std::cout << "char: Non displayable" << std::endl;
 }
 
-// Imprime las conversiones para un int
 void ScalarConverter::printInt(double value)
 {
 	if (value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max())
@@ -81,7 +79,6 @@ void ScalarConverter::printInt(double value)
 		std::cout << "int: " << static_cast<int>(value) << "" << std::endl;
 }
 
-// Imprime las conversiones para un float
 void ScalarConverter::printFloat(double value)
 {
 	if (value < -std::numeric_limits<float>::max() || value > std::numeric_limits<float>::max()) {
@@ -92,13 +89,11 @@ void ScalarConverter::printFloat(double value)
 	}
 }
 
-// Imprime las conversiones para un double
 void ScalarConverter::printDouble(double value)
 {
 	std::cout << "double: " << value << "" << std::endl;
 }
 
-// Manejo de pseudo-literals (nan, inf, etc.)
 bool ScalarConverter::isPseudoLiteral(const std::string& literal)
 {
 	if (literal == "nanf" || literal == "+inff" || literal == "-inff")

@@ -46,6 +46,8 @@
         "random": "cpp",
         "tuple": "cpp",
         "utility": "cpp",
-        "ranges": "cpp"
+        "ranges": "cpp",
+        "ctime": "cpp",
+        "iomanip": "cpp"
     }
 }
