@@ -33,11 +33,11 @@ Base* generate()
 void	identify(Base* p)
 {
 	if (dynamic_cast<A*>(p))
-		std::cout << GREEN"A" << std::endl;
+		std::cout << GREEN"*Class A" << std::endl;
 	else if (dynamic_cast<B*>(p))
-		std::cout << BLUE"B" << std::endl;
+		std::cout << BLUE"*Clas B" << std::endl;
 	else if (dynamic_cast<C*>(p))
-		std::cout << YELLOW"C" << std::endl;
+		std::cout << YELLOW"*Class C" << std::endl;
 	else
 		std::cout << RED"<Unknown type>" << std::endl;
 }
@@ -47,21 +47,21 @@ void identify(Base& p)
 	try
 	{
 		(void)dynamic_cast<A&>(p);
-		std::cout << GREEN"Class A" << std::endl;
+		std::cout << GREEN"&Class A" << std::endl;
 		return ;
 	}
 	catch(const std::exception& e) {}
 	try
 	{
 		(void)dynamic_cast<B&>(p);
-		std::cout << BLUE"Class B" << std::endl;
+		std::cout << BLUE"&Class B" << std::endl;
 		return ;
 	}
 	catch(const std::exception& e) {}
 	try
 	{
 		(void)dynamic_cast<C&>(p);
-		std::cout << YELLOW"Class C" << std::endl;
+		std::cout << YELLOW"&Class C" << std::endl;
 		return ;
 	}
 	catch(const std::exception& e) {}

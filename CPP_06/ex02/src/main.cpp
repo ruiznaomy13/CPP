@@ -23,12 +23,12 @@ int main()
 	Base* obj2 = generate();
 	Base* obj3 = generate();
 
-	std::cout << "\n--- Identificación con puntero ---" << std::endl;
+	std::cout << NC"\n--- Identificación con puntero ---" << std::endl;
 	identify(obj1);
 	identify(obj2);
 	identify(obj3);
 
-	std::cout << "\n--- Identificación con referencia ---" << std::endl;
+	std::cout << NC"\n--- Identificación con referencia ---" << std::endl;
 	identify(*obj1);
 	identify(*obj2);
 	identify(*obj3);
