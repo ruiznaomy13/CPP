@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 18:00:42 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/20 21:34:15 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:20:40 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,14 @@ ScalarConverter::ScalarConverter() {
 }
 
 ScalarConverter::ScalarConverter(const ScalarConverter& other) {
+	*this = other;
 	std::cout << "[SCALAR CONVERTER] Copy Constructor." << std::endl;
 }
 
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
 	std::cout << "[SCALAR CONVERTER] Copy Assignmet Operator." << std::endl;
+	(void)other;
+    return (*this);
 }
 
 ScalarConverter::~ScalarConverter() {
