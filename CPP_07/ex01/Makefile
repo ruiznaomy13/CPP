@@ -12,7 +12,7 @@ DIR_SRC     = src
 SRC         = $(DIR_SRC)/main.cpp
 
 DIR_HDR     = hdr
-HDR         = $(DIR_HDR)/Methods.hpp
+HDR         = $(DIR_HDR)/Iter.hpp
 
 DIR_OBJ     = obj
 OBJ         = $(patsubst $(DIR_SRC)/%.cpp,$(DIR_OBJ)/%.o,$(SRC))
