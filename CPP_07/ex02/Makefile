@@ -9,10 +9,10 @@
 NAME        = scalarConverter
 
 DIR_SRC     = src
-SRC         = $(DIR_SRC)/main.cpp $(DIR_SRC)/ScalarConverter.cpp
+SRC         = $(DIR_SRC)/main.cpp
 
 DIR_HDR     = hdr
-HDR         = $(DIR_HDR)/ScalarConverter.hpp
+HDR         = $(DIR_HDR)/Array.hpp
 
 DIR_OBJ     = obj
 OBJ         = $(patsubst $(DIR_SRC)/%.cpp,$(DIR_OBJ)/%.o,$(SRC))
