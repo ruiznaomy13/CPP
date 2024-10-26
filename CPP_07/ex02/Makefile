@@ -6,7 +6,7 @@
 #      ██║ ╚═╝ ██║██║  ██║██║░╚██╗███████╗██║░░░░░██║███████╗███████╗      #
 #      ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝░░╚═╝╚══════╝╚═╝░░░░░╚═╝╚══════╝╚══════╝      #
 # ************************************************************************ #
-NAME        = scalarConverter
+NAME        = Array
 
 DIR_SRC     = src
 SRC         = $(DIR_SRC)/main.cpp
@@ -29,11 +29,11 @@ NC          = \033[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJ) Makefile
+$(NAME): $(OBJ) Makefile $(HDR)
 	$(CPP) $(CPPFLAGS) $(OBJ) -o $(NAME)
 	@echo "$(GREEN)\n✨ COMPILED ✨\n$(NC)"
 
-$(DIR_OBJ)/%.o: $(DIR_SRC)/%.cpp
+$(DIR_OBJ)/%.o: $(DIR_SRC)/%.cpp $(HDR)
 	@mkdir -p $(DIR_OBJ)
 	@$(CPP) $(CPPFLAGS) -c $< -o $@
 
@@ -41,7 +41,7 @@ $(DIR_OBJ)/%.o: $(DIR_SRC)/%.cpp
 
 clean:
 	$(RM) $(DIR_OBJ)
-	@echo "$(RED)\nDELETED\n $(NC)"
+	@echo "$(RED)\nDELETED\n$(NC)"
 
 fclean: clean
 	$(RM) $(NAME)
@@ -49,3 +49,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
