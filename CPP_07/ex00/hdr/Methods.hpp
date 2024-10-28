@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 19:58:24 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/23 19:56:09 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:56:26 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 
 template <class T>
-void swap(T& a, T& b)
+void	swap(T& a, T& b)
 {
 	T	c = a;
 	a = b;
@@ -38,4 +38,5 @@ T	max(T a, T b)
 		return (b);
 	return (a);
 }
+
 #endif

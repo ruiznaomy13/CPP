@@ -6,13 +6,13 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 19:59:12 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/25 20:21:43 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:55:09 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Iter.hpp"
 
-void printInt(int& element) {
+void	printInt(int& element) {
 	std::cout << element << " ";
 }
 
@@ -20,16 +20,16 @@ void	multiply_size(int& element) {
 	element = element * element;
 }
 
-void print_mayus(char& element) {
+void	print_mayus(char& element) {
 	std::cout << static_cast<char>(std::toupper(element));
 }
 
-void print_lower(char& element) {
+void	print_lower(char& element) {
 	std::cout << static_cast<char>(std::tolower(element));
 }
 
 
-int main()
+int	main()
 {
 	int arr[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
