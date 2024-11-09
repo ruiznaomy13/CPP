@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 22:11:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/20 23:09:53 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/10/29 18:04:22 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	identify(Base* p)
 		std::cout << GREEN"*Class A" << std::endl;
 	else if (dynamic_cast<B*>(p))
 		std::cout << BLUE"*Clas B" << std::endl;
-	else if (dynamic_cast<C*>(p))
+	else if (dynamic_cast<C*>(p))		
 		std::cout << YELLOW"*Class C" << std::endl;
 	else
 		std::cout << RED"<Unknown type>" << std::endl;
