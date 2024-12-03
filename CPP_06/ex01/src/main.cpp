@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 21:00:30 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/20 22:05:41 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:07:56 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main( void )
 	std::cout << GREEN"\n\t\t T E S T   # 1" << std::endl;
 	std::cout << NC"¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯" << std::endl;
 	// Serializar el puntero a Data
-	unsigned long serializedData = Serializer::serialize(&data1);
+	uintptr_t serializedData = Serializer::serialize(&data1);
 	std::cout << "Serialized Data Pointer: " << serializedData << std::endl;
 
 	// Deserializar el puntero
@@ -39,7 +39,7 @@ int main( void )
 	std::cout << GREEN"\n\t\t T E S T   # 2" << NC"" << std::endl;
 	std::cout << NC"¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯" << std::endl;
 	// Serializar el segundo puntero a Data
-	unsigned long serializedData2 = Serializer::serialize(&data2);
+	uintptr_t serializedData2 = Serializer::serialize(&data2);
 	std::cout << "Serialized Data Pointer 2: " << serializedData2 << std::endl;
 
 	// Deserializar el segundo puntero

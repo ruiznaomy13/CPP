@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 20:45:34 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/20 22:03:48 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:07:22 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define SERIALIZER_HPP
 
 #include <iostream>
+#include <stdint.h>
 
 # define GREEN		"\x1b[1;32m"
 # define NC			"\033[0m"
@@ -32,8 +33,8 @@ class Serializer {
 		~Serializer();
 
 	public:
-		static unsigned long serialize(Data* ptr);
-		static Data* deserialize(unsigned long raw);
+		static uintptr_t serialize(Data* ptr);
+		static Data* deserialize(uintptr_t raw);
 };
 
 #endif

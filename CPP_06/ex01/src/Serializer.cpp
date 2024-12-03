@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 20:45:04 by ncastell          #+#    #+#             */
-/*   Updated: 2024/10/20 21:59:42 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:07:43 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ Serializer& Serializer::operator=(const Serializer& other) {
     return (*this);
 }
 
-unsigned long Serializer::serialize(Data* ptr)
+uintptr_t Serializer::serialize(Data* ptr)
 {
     std::cout << "[SERIALIZER] Serializer" << std::endl;
-    unsigned long ret_ptr = reinterpret_cast<unsigned long>(ptr);
+    uintptr_t ret_ptr = reinterpret_cast<uintptr_t>(ptr);
     return (ret_ptr);
 }
 
-Data* Serializer::deserialize(unsigned long raw)
+Data* Serializer::deserialize(uintptr_t raw)
 {
     std::cout << "[SERIALIZER] Deserializer" << std::endl;
     Data* ret_data = reinterpret_cast<Data*>(raw);
