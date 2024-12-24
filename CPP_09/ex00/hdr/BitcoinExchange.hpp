@@ -3,13 +3,15 @@
 
 #include <iostream>
 #include <fstream>
-#include <map>
 #include <sstream>
 #include <string>
-#include <cstdlib> 
+#include <map>
+#include <cstdlib>
 
 struct Date {
-    int year, month, day;
+    int year;
+    int month;
+    int day;
 
     bool operator<(const Date& other) const {
         if (year != other.year) return year < other.year;
@@ -19,20 +21,19 @@ struct Date {
 };
 
 class BitcoinExchange {
+public:
+    BitcoinExchange(std::string _file_name);
+    ~BitcoinExchange();
+    std::string getFileName() const;
+    void save_data(const std::string& data_file);
+    void show_data() const;
+
 private:
     std::string file_name;
     std::map<Date, float> Data;
 
-    void save_data(std::string data_file);
-    void error_msg(std::string msg);
     Date cast_date(const std::string& date_str);
-
-public:
-    BitcoinExchange(std::string file_name);
-    ~BitcoinExchange();
-
-    std::string getFileName();
-    void show_data() const;
+    void error_msg(const std::string& msg) const;
 };
 
 #endif
