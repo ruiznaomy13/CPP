@@ -19,6 +19,8 @@ int	main(int ac, char **av)
 		std::cerr << "Error: could not open file." << std::endl;
 		return (-1);
 	}
-	BitcoinExchange	btc = BitcoinExchange(av[1]);
+
+	BitcoinExchange	btc(av[1]);
 	std::cout << btc.getFileName() << std::endl;
+	btc.show_data();
 }
