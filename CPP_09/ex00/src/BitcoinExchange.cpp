@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 18:29:26 by ncastell          #+#    #+#             */
-/*   Updated: 2025/01/08 19:23:15 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:29:03 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,22 @@ BitcoinExchange::BitcoinExchange(std::string _file_name)
 {
 	this->file_name = _file_name;
 	save_data("data.csv");
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
+{
+	this->file_name = other.file_name;
+	this->Data = other.Data;
+}
+
+BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& other)
+{
+	if (this != &other)
+	{
+		this->file_name = other.file_name;
+		this->Data = other.Data;
+	}
+	return (*this);
 }
 
 BitcoinExchange::~BitcoinExchange() {}
