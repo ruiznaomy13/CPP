@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/15 18:03:35 by ncastell          #+#    #+#             */
-/*   Updated: 2025/01/16 12:20:33 by ncastell         ###   ########.fr       */
+/*   Created: 2025/01/16 10:37:46 by ncastell          #+#    #+#             */
+/*   Updated: 2025/01/16 12:14:03 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "RPN.hpp"
+#include <iostream>
+#include <stack>
 
-int	main(int ac, char **av)
+class RPN
 {
-	RPN	rpn;
-	
-	if (ac != 2)
-		return (-1);
+	private:
+		std::stack<int>	operation_stack;
 
-	try {
-		rpn.calculator(av[1]);
-	} catch (const std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-	return (0);
-}
+		bool	is_operator(char c);
+		int		return_num();
+
+	public:
+		RPN();
+		~RPN();
+
+		int		calculator(std::string operation);
+		void	solve(int a, int b, char op);
+};
