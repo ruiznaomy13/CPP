@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 18:07:39 by ncastell          #+#    #+#             */
-/*   Updated: 2025/01/16 13:17:58 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/01/16 14:46:59 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ bool	RPN::check_num(std::string str_num)
 
 void	RPN::solve(int a, int b, char op)
 {
-	if ((a > 9 || a < 0 ) || (b > 9 || b < 0))
-		throw std::runtime_error("ERROR: Bad number.");
 	switch (op)
 	{
 		case '+':
@@ -66,7 +64,7 @@ int	RPN::return_num()
 
 int	RPN::calculator(std::string operation)
 {
-	int					a, b;
+	int					num, a, b;
 	std::string			tmp;
 	std::stringstream	str_strm(operation);
 	
@@ -75,7 +73,10 @@ int	RPN::calculator(std::string operation)
 		try {
 			if (check_num(tmp))
 			{
-				operation_stack.push(std::atoi(tmp.c_str()));
+				num = std::atoi(tmp.c_str());
+				if (num > 9 || num < 0 )
+					throw std::runtime_error("ERROR: Bad number.");
+				operation_stack.push(num);
 			}
 			else if (is_operator(tmp))
 			{
@@ -85,14 +86,14 @@ int	RPN::calculator(std::string operation)
 				std::cout << "-> "<<a<<tmp<<b<<"="<<operation_stack.top() << std::endl;
 			}
 			else 
-				throw std::runtime_error("ERROR: Bad operation."); // DUDOSO
+				throw std::runtime_error("ERROR: Unexpected symbol."); // DUDOSO
 		} catch (const std::exception& e) {
 			throw std::runtime_error(e.what());
 		}
 	}
 	if (operation_stack.size() > 1)
-		throw std::runtime_error("ERROR: Bad operation.");
-	std::cout << "RESULT = " << operation_stack.top() << std::endl;
+		throw std::runtime_error("ERROR: Bad operation 1.");
+	std::cout << GREEN"RESULT = " << operation_stack.top() << NC"" << std::endl;
 	return (0);
 }
 
