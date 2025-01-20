@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/15 18:03:35 by ncastell          #+#    #+#             */
-/*   Updated: 2025/01/20 21:00:34 by ncastell         ###   ########.fr       */
+/*   Created: 2025/01/20 21:00:51 by ncastell          #+#    #+#             */
+/*   Updated: 2025/01/20 21:01:32 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include  "RPN.hpp"
+#ifndef PMERGE_ME_HPP
+# define PMERGE_ME_HPP
 
-int	main(int ac, char **av)
+class PmergeMe
 {
-	RPN	rpn;
-	
-	if (ac != 2)
-		return (-1); // TODO
+	private:
+			
+	public:
+		PmergeMe();
+		~PmergeMe();
+};
 
-	try {
-		rpn.calculator(av[1]);
-	} catch (const std::exception& e) {
-		std::cerr << RED"" << e.what() << NC"" << std::endl;
-	}
-	return (0);
-}
+#endif
