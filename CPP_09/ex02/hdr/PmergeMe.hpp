@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 21:00:51 by ncastell          #+#    #+#             */
-/*   Updated: 2025/01/20 21:01:32 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/01/21 18:08:18 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ class PmergeMe
 	public:
 		PmergeMe();
 		~PmergeMe();
-};
+}
 
 #endif
