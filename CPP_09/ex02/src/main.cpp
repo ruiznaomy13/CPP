@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 20:49:16 by ncastell          #+#    #+#             */
-/*   Updated: 2025/01/21 18:07:59 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:58:23 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,13 @@
 int	main(int ac, char **av)
 {
 	if (ac < 2)
-		return (1); //TODO
+	{
+		std::cerr << "ERROR: Debes proporcionar al menos un número como argumento." << std::endl;
+		return (1);
+	}
 
-	PmergeMe    merge;
-    merge
+	PmergeMe	FordJohnson;
+
+	FordJohnson.fill_vector(ac, av);
+	FordJohnson.print_vector();
 }
