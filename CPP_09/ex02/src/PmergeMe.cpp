@@ -5,109 +5,121 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 21:01:35 by ncastell          #+#    #+#             */
-/*   Updated: 2025/01/22 15:59:37 by ncastell         ###   ########.fr       */
+/*   Created: 2025/01/31 17:18:25 by ncastell          #+#    #+#             */
+/*   Updated: 2025/01/31 17:23:13 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe()
+PmergeMe::PmergeMe(char **_argv) : argv(_argv) 
 {
-    // Inicialización opcional, si es necesario
-    std::cout << "PmergeMe creado correctamente." << std::endl;
+	parse_argv();
 }
 
-PmergeMe::~PmergeMe() { }
+PmergeMe::~PmergeMe() {}
 
-void PmergeMe::print_vector() const
+void PmergeMe::validateInput(const std::string &str)
 {
-    std::cout << "Números en el vector: ";
-    for (size_t i = 0; i < arr.size(); ++i)
-    {
-        std::cout << arr[i] << " ";
-    }
-    std::cout << std::endl;
-}
-
-void	PmergeMe::fill_vector(int argc, char** argv)
-{
-	for (int i = 1; i < argc; ++i) // Comienza desde 1 para ignorar el nombre del programa
+	if (str.empty())
 	{
-		std::string arg = argv[i]; // Convierte el argumento en std::string
-
-		std::stringstream ss(arg); // Usamos un stringstream para convertirlo
-		int num;
-		
-		// Verifica si la conversión fue exitosa
-		if (!(ss >> num)) // Si no pudo convertir el string a un número
+		std::cerr << "Error: Empty input" << std::endl;
+		exit(1);
+	}
+	for (size_t i = 0; i < str.length(); i++)
+	{
+		if (!isdigit(str[i]))
 		{
-			std::cerr << "ERROR: El argumento '" << argv[i] << "' no es un entero válido." << std::endl;
+			std::cerr << "Error: Invalid input: " << str << std::endl;
+			exit(1);
 		}
+	}
+}
+
+int PmergeMe::stringToInt(const std::string &str)
+{
+	validateInput(str);
+	long num = std::atol(str.c_str());
+	if (num > 2147483647) 
+	{
+		std::cerr << "Error: Number too large: " << str << std::endl;
+		exit(1);
+	}
+	return static_cast<int>(num);
+}
+
+void PmergeMe::parse_argv()
+{
+	for (size_t i = 1; argv[i]; i++)
+	{
+		int num = stringToInt(argv[i]);
+		vec.push_back(num);
+		dque.push_back(num);
+	}
+}
+
+template <typename T>
+void PmergeMe::mergeInsertionSort(T &container)
+{
+	if (container.size() < 2)
+		return;
+
+	std::vector<int> left, right;
+	size_t mid = container.size() / 2;
+
+	for (size_t i = 0; i < mid; i++)
+		left.push_back(container[i]);
+	for (size_t i = mid; i < container.size(); i++)
+		right.push_back(container[i]);
+
+	mergeInsertionSort(left);
+	mergeInsertionSort(right);
+
+	container.clear();
+	size_t i = 0, j = 0;
+	while (i < left.size() || j < right.size())
+	{
+		if (j >= right.size() || (i < left.size() && left[i] < right[j]))
+			container.push_back(left[i++]);
 		else
-		{
-			arr.push_back(num); // Si es válido, lo agregamos al vector
-		}
+			container.push_back(right[j++]);
 	}
 }
 
-void    PmergeMe::insertionSort(int left, int right)
+void PmergeMe::measureSortingTime()
 {
-    for (int i = left + 1; i <= right; ++i)
-	{
-		int key = arr[i];
-		int j = i - 1;
-		while (j >= left && arr[j] > key)
-		{
-			arr[j + 1] = arr[j];
-			--j;
-		}
-		arr[j + 1] = key;
-	}
+	clock_t start, end;
+
+	start = clock();
+	mergeInsertionSort(this->vec);
+	end = clock();
+	vec_secs = (double)(end - start) / CLOCKS_PER_SEC * 1000000.0;
+
+	start = clock();
+	mergeInsertionSort(this->dque);
+	end = clock();
+	dque_secs = (double)(end - start) / CLOCKS_PER_SEC * 1000000.0;
 }
 
-void    PmergeMe::merge(int left, int mid, int right)
+void PmergeMe::run()
 {
-    int n1 = mid - left + 1;
-	int n2 = right - mid;
-
-	std::vector<int> L(n1);
-	std::vector<int> R(n2);
-
-	for (int i = 0; i < n1; ++i)
-		L[i] = arr[left + i];
-	for (int i = 0; i < n2; ++i)
-		R[i] = arr[mid + 1 + i];
-
-	int i = 0, j = 0, k = left;
-	while (i < n1 && j < n2)
-	{
-		if (L[i] <= R[j])
-			arr[k++] = L[i++];
-		else
-			arr[k++] = R[j++];
-	}
-
-	while (i < n1)
-		arr[k++] = L[i++];
-
-	while (j < n2)
-		arr[k++] = R[j++];
+	std::cout << "Before: ";
+	printData();
+	measureSortingTime();
+	std::cout << "After: ";
+	printData();
+	printTime();
 }
 
-void    PmergeMe::mergeInsertionSort(int left, int right)
+void PmergeMe::printData() const
 {
-    if (left < right)
-	{
-		if (right - left + 1 <= 10) // Umbral para usar Insertion Sort
-			insertionSort(left, right);
-		else
-		{
-			int mid = left + (right - left) / 2;
-			mergeInsertionSort(left, mid);
-			mergeInsertionSort(mid + 1, right);
-			merge(left, mid, right);
-		}
-	}
+	for (size_t i = 0; i < vec.size(); i++)
+		std::cout << vec[i] << " ";
+	std::cout << std::endl;
+}
+
+void PmergeMe::printTime() const
+{
+	std::cout << "Time to process " << vec.size() << " elements with std::vector: " << vec_secs << " us" << std::endl;
+	std::cout << "Time to process " << dque.size() << " elements with std::deque: " << dque_secs << " us" << std::endl;
 }
