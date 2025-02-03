@@ -6,13 +6,13 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:18:25 by ncastell          #+#    #+#             */
-/*   Updated: 2025/01/31 17:23:13 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:36:00 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(char **_argv) : argv(_argv) 
+PmergeMe::PmergeMe(int _c_size, char **_argv) : c_size(_c_size - 1),  argv(_argv)
 {
 	parse_argv();
 }
@@ -30,7 +30,7 @@ void PmergeMe::validateInput(const std::string &str)
 	{
 		if (!isdigit(str[i]))
 		{
-			std::cerr << "Error: Invalid input: " << str << std::endl;
+			std::cerr << "Error: Invalid input: [" << str << "]" << std::endl;
 			exit(1);
 		}
 	}
@@ -62,7 +62,7 @@ template <typename T>
 void PmergeMe::mergeInsertionSort(T &container)
 {
 	if (container.size() < 2)
-		return;
+		return ;
 
 	std::vector<int> left, right;
 	size_t mid = container.size() / 2;
@@ -88,17 +88,15 @@ void PmergeMe::mergeInsertionSort(T &container)
 
 void PmergeMe::measureSortingTime()
 {
-	clock_t start, end;
-
 	start = clock();
 	mergeInsertionSort(this->vec);
 	end = clock();
-	vec_secs = (double)(end - start) / CLOCKS_PER_SEC * 1000000.0;
+	vec_secs = (double)(end - start) / CLOCKS_PER_SEC * 100000.0;
 
 	start = clock();
 	mergeInsertionSort(this->dque);
 	end = clock();
-	dque_secs = (double)(end - start) / CLOCKS_PER_SEC * 1000000.0;
+	dque_secs = (double)(end - start) / CLOCKS_PER_SEC * 100;
 }
 
 void PmergeMe::run()
@@ -120,6 +118,6 @@ void PmergeMe::printData() const
 
 void PmergeMe::printTime() const
 {
-	std::cout << "Time to process " << vec.size() << " elements with std::vector: " << vec_secs << " us" << std::endl;
-	std::cout << "Time to process " << dque.size() << " elements with std::deque: " << dque_secs << " us" << std::endl;
+	std::cout << "Time to process a range of " << c_size << " elements with std::vector: " << vec_secs << " us" << std::endl;
+	std::cout << "Time to process a range of " << c_size << " elements with std::deque: " << dque_secs << " us" << std::endl;
 }
