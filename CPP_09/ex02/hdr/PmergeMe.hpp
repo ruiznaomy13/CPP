@@ -5,35 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 17:14:15 by ncastell          #+#    #+#             */
-/*   Updated: 2025/02/24 16:34:54 by ncastell         ###   ########.fr       */
+/*   Created: 2025/03/15 00:26:09 by ncastell          #+#    #+#             */
+/*   Updated: 2025/03/21 17:38:24 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PMERGEME_HPP
-#define PMERGEME_HPP
-
-#include <iostream>
 #include <vector>
-#include <deque>
-#include <algorithm>
+#include <iostream>
 #include <cstdlib>
-#include <ctime>
+#include <cmath>
+
+# define RED		"\x1b[1;31m"
+# define GREEN		"\x1b[1;32m"
+# define YELLOW		"\x1b[1;34m"
+# define NC			"\033[0m"
+
 
 class PmergeMe
 {
 	private:
-		std::vector<int>	vec_cont;
-		std::deque<int>		dque_cont;
-		size_t				c_size;
-		char				**argv;
+		std::vector<int>	numsVec;
+		int			contSize;
 
 	public:
-		PmergeMe(int _c_size, char **_argv);
+		PmergeMe(int ac, char **av);
 		~PmergeMe();
 
-	private:
-		void	saveNums();
-};
+		void	Init();
+		void	showContent(void);
+		void	Sort(std::vector<int> &seq, size_t level);
 
-#endif
+	private:
+		bool	Parser(char **av);
+		void	Error(const std::string& errorMsg);
+};
