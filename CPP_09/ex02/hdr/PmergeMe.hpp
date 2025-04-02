@@ -6,14 +6,16 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:26:09 by ncastell          #+#    #+#             */
-/*   Updated: 2025/03/21 17:38:24 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/03/24 21:26:26 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector>
+#include <climits>
 #include <iostream>
 #include <cstdlib>
 #include <cmath>
+#include <algorithm>
 
 # define RED		"\x1b[1;31m"
 # define GREEN		"\x1b[1;32m"
@@ -32,10 +34,12 @@ class PmergeMe
 		~PmergeMe();
 
 		void	Init();
-		void	showContent(void);
+		void	ShowContent(std::vector<int> v);
 		void	Sort(std::vector<int> &seq, size_t level);
+		// void	Merge(std::vector<int> &seq, size_t level);
 
 	private:
-		bool	Parser(char **av);
+		void	Parser(int ac, char **av);
+		// bool	Parser(char **av);
 		void	Error(const std::string& errorMsg);
 };
