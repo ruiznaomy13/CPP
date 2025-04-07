@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:36:20 by ncastell          #+#    #+#             */
-/*   Updated: 2025/04/07 02:28:32 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/04/07 02:56:16 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,9 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 	std::vector<int> pend;
 	std::vector<int> non;
 	size_t			i;
-
-	//ShowContent("MAIN", main);
+	size_t			j;
 
 	std::cout << "PAIR_SIZE = " << pair_size << "\nELEMENT_SIZE = " << pair_size/2 << std::endl;
-	// Procesar el resto de elementos
 	for (i = pair_size; i + (pair_size / 2) <= seq.size(); i += pair_size / 2)
 	{
 		std::vector<int> b(seq.begin() + i, seq.begin() + i + (pair_size / 2));
@@ -134,17 +132,34 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 	if (i < seq.size())
 		non.insert(non.end(), seq.begin() + i, seq.end());
 
+	// binary_insertion
+	size_t lastIndex = (pair_size / 2) - 1;
+	for (i = 0; i < pend.size(); i += pair_size/2)
+	{
+		std::vector<int> b(pend.begin() + i, pend.begin() + i + (pair_size / 2));
+		for (j = 0; j < main.size(); j += pair_size / 2)
+		{
+			std::vector<int> a(main.begin() + j, main.begin() + j + (pair_size / 2));
+			if (b[lastIndex] < a[lastIndex])
+			{
+				main.insert(main.begin() + j, b.begin(), b.end());
+				break;
+			}
+		}
+		if (j == main.size())
+			main.insert(main.end(), b.begin(), b.end());
+	}
+	
+	/*BORRAR*/
 	ShowContent("MAIN", main);
 	ShowContent("PEND", pend);
 	ShowContent("NON", non);
 
 	main.insert(main.end(), non.begin(), non.end());
-	//ShowContent("SEQ", seq);
 	std::cout << "\n";
 
-	//seq = main;
+	seq = main;
 }
-
 
 /*
 void	PmergeMe::MergeInsertion(std::vector<int> &seq, size_t pair_size)
