@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:26:09 by ncastell          #+#    #+#             */
-/*   Updated: 2025/04/04 02:05:00 by naomy            ###   ########.fr       */
+/*   Updated: 2025/04/07 00:54:37 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ class PmergeMe
 		~PmergeMe();
 
 		void	Init();
-		void	ShowContent(std::vector<int> v);
+		void	ShowContent(std::string name, std::vector<int> v);
 		void	Sort(std::vector<int> &seq, size_t level);
-		void	MergeSort(std::vector<int> &seq, size_t pair_size);
+		void	Merge(std::vector<int> &seq, size_t pair_size);
 
 	private:
 		void	Parser(int ac, char **av);
