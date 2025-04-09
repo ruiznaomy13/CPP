@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:26:09 by ncastell          #+#    #+#             */
-/*   Updated: 2025/04/07 00:54:37 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/04/10 01:32:28 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define YELLOW		"\x1b[1;34m"
 # define NC			"\033[0m"
 
+#define	MAX_JC	14
 
 class PmergeMe
 {
@@ -38,8 +39,10 @@ class PmergeMe
 		void	Sort(std::vector<int> &seq, size_t level);
 		void	Merge(std::vector<int> &seq, size_t pair_size);
 
+		size_t	JacobsthalNum(size_t );
 	private:
 		void	Parser(int ac, char **av);
+		size_t	BinarySearch(const std::vector<int>& values, int target);
 		// bool	Parser(char **av);
 		void	Error(const std::string& errorMsg);
 };

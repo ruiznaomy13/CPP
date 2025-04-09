@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:36:20 by ncastell          #+#    #+#             */
-/*   Updated: 2025/04/07 02:56:16 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/04/10 01:59:29 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ void	PmergeMe::ShowContent(std::string name, std::vector<int> v)
 
 void	PmergeMe::Sort(std::vector<int> &seq, size_t level)
 {
-	size_t pair_size = pow(2, level);
-	size_t n_pairs = seq.size() / pair_size;
+	size_t	pair_size = pow(2, level);
+	size_t	element_size = pair_size / 2;
+	size_t	n_pairs = seq.size() / pair_size;
 
 	if (n_pairs < 1)
 		return;	
@@ -79,11 +80,11 @@ void	PmergeMe::Sort(std::vector<int> &seq, size_t level)
 
 	for (size_t i = 0; i < seq.size() - (seq.size() % pair_size); i += pair_size)
 	{
-		std::vector<int> left(seq.begin() + i, seq.begin() + i + (pair_size / 2));
-		std::vector<int> right(seq.begin() + i + (pair_size / 2), seq.begin() + i + pair_size);
+		std::vector<int> left(seq.begin() + i, seq.begin() + i + element_size);
+		std::vector<int> right(seq.begin() + i + element_size, seq.begin() + i + pair_size);
 
 		/* BORRAR */
-		size_t lastIndex = (pair_size / 2) - 1;
+		size_t lastIndex = element_size - 1;
 		std::cout << GREEN"LEFT: " << lastIndex << " -> " << left[lastIndex] << NC << std::endl;
 		std::cout << GREEN"RIGHT: " << lastIndex << " -> " << right[lastIndex] << NC << std::endl;
 
@@ -91,7 +92,7 @@ void	PmergeMe::Sort(std::vector<int> &seq, size_t level)
 			std::swap_ranges(left.begin(), left.end(), right.begin());
 
 		std::copy(left.begin(), left.end(), seq.begin() + i);
-		std::copy(right.begin(), right.end(), seq.begin() + i + (pair_size / 2));
+		std::copy(right.begin(), right.end(), seq.begin() + i + element_size);
 
 		/*BORRA*/
 		ShowContent("left",left);
@@ -103,7 +104,55 @@ void	PmergeMe::Sort(std::vector<int> &seq, size_t level)
 	// ShowContent("seq", seq);
 	Sort(seq, level + 1);
 	Merge(seq, pair_size);
-	std::cout << "\n----- Iteration: " << level << "------\n";
+	std::cout << "\n----- Iteration: " << level - 1 << "------\n";
+}
+
+/*
+size_t	PmergeMe::BinarySearch(std::vector<int> vec, size_t start, size_t end, int n, size_t element_size)
+{
+	std::vector<int> aux;
+	for (size_t i = 0; i + element_size < end; i += element_size)
+	{
+		std::vector<int> n(vec.begin() + i, vec.begin() + i + element_size);
+		aux.push_back(n[element_size - 1]);
+	}
+
+	while (end >= start)
+	{
+		int	mid = start + (end - start) / 2;
+		// std::cout << "END = " << end << "\nSTART = " << start << "\nMID = " << mid << std::endl;
+		std::cout << "MID = " << mid << std::endl;
+		if (start >= end)
+		{
+			if (vec[mid] < n)
+				return (mid + 1);
+			return (mid);
+		}
+		if (vec[mid] > n)
+			end = mid - 1;
+		else if (vec[mid] < n)
+			start = mid + 1;
+	}
+
+	return (-1);
+}*/
+
+size_t PmergeMe::BinarySearch(const std::vector<int>& keys, int target)
+{
+	size_t	start = 0;
+	size_t	end = keys.size();
+
+	while (start < end)
+	{
+		size_t mid = start + (end - start) / 2;
+
+		if (keys[mid] < target)
+			start = mid + 1;
+		else
+			end = mid;
+	}
+
+	return (start);
 }
 
 // MAIN: b1, a1, a2, an...
@@ -111,49 +160,47 @@ void	PmergeMe::Sort(std::vector<int> &seq, size_t level)
 // No-p: %2 != 
 void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 {
-	std::vector<int> main(seq.begin(), seq.begin() + pair_size);
-	std::vector<int> pend;
-	std::vector<int> non;
-	size_t			i;
-	size_t			j;
+	std::vector<int>	main(seq.begin(), seq.begin() + pair_size);
+	std::vector<int>	pend;
+	std::vector<int>	non;
+	std::vector<int>	aux_nums;
+	size_t	i;
+	size_t	element_size = pair_size / 2;
 
 	std::cout << "PAIR_SIZE = " << pair_size << "\nELEMENT_SIZE = " << pair_size/2 << std::endl;
-	for (i = pair_size; i + (pair_size / 2) <= seq.size(); i += pair_size / 2)
+	for (i = pair_size; i + element_size <= seq.size(); i += element_size)
 	{
-		std::vector<int> b(seq.begin() + i, seq.begin() + i + (pair_size / 2));
+		std::vector<int> b(seq.begin() + i, seq.begin() + i + element_size);
 		pend.insert(pend.end(), b.begin(), b.end());
 		if (i + pair_size > seq.size())
 			continue ;
-		std::vector<int> a(seq.begin() + i + (pair_size / 2), seq.begin() + i + pair_size);
+		std::vector<int> a(seq.begin() + i + element_size, seq.begin() + i + pair_size);
 		main.insert(main.end(), a.begin(), a.end());
-		i += pair_size/2;
+		i += element_size;
 	}
 
 	if (i < seq.size())
 		non.insert(non.end(), seq.begin() + i, seq.end());
 
-	// binary_insertion
-	size_t lastIndex = (pair_size / 2) - 1;
-	for (i = 0; i < pend.size(); i += pair_size/2)
-	{
-		std::vector<int> b(pend.begin() + i, pend.begin() + i + (pair_size / 2));
-		for (j = 0; j < main.size(); j += pair_size / 2)
-		{
-			std::vector<int> a(main.begin() + j, main.begin() + j + (pair_size / 2));
-			if (b[lastIndex] < a[lastIndex])
-			{
-				main.insert(main.begin() + j, b.begin(), b.end());
-				break;
-			}
-		}
-		if (j == main.size())
-			main.insert(main.end(), b.begin(), b.end());
-	}
-	
-	/*BORRAR*/
 	ShowContent("MAIN", main);
 	ShowContent("PEND", pend);
 	ShowContent("NON", non);
+
+	for (size_t j = 0; j + element_size <= main.size(); j += element_size)
+		aux_nums.push_back(main[j + element_size - 1]);
+
+	for (i = 0; i + element_size <= pend.size(); i += element_size)
+	{
+		std::vector<int> b(pend.begin() + i, pend.begin() + i + element_size);
+		int n = b[element_size - 1];
+
+		size_t pos = BinarySearch(aux_nums, n);
+		size_t real_pos = pos * element_size;
+
+		main.insert(main.begin() + real_pos, b.begin(), b.end());
+		aux_nums.insert(aux_nums.begin() + pos, n);
+		std::cout << RED"POS FOR " << n << " = [" << real_pos << "]" << NC"\n";
+	}
 
 	main.insert(main.end(), non.begin(), non.end());
 	std::cout << "\n";
@@ -161,28 +208,15 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 	seq = main;
 }
 
-/*
-void	PmergeMe::MergeInsertion(std::vector<int> &seq, size_t pair_size)
+size_t	PmergeMe::JacobsthalNum(size_t n)
 {
-	// a1, b1, a2, a3, an...
-	std::vector<int>	main(seq.begin(), seq.begin() + pair_size);
-	std::vector<int> 	pend;
+	size_t	aux;
 
-	for (size_t i = pair_size; i < seq.size(); i += pair_size)
-	{
-		std::vector<int> b(seq.begin() + i, seq.begin() + i + (pair_size / 2));
-		pend.insert(pend.end(), b.begin(), b.end());
-		if (i + pair_size > seq.size())
-			break;
-		std::vector<int> a(seq.begin() + i + (pair_size / 2), seq.begin() + i + pair_size);
-		main.insert(main.end(), a.begin(), a.end());
-	}
-	std::vector<int> last;
-	ShowContent("MAIN", main);
-	ShowContent("PEND", pend);
-	ShowContent("seq", seq);
-	main.insert(main.end(), last.begin(), last.end());
-	seq = main;
-}*/
-
+	if (n == 0)
+		return (0);
+	else if (n == 1)
+		return (1);
+	aux = JacobsthalNum(n - 1) + 2 * JacobsthalNum(n - 2);
+	return (aux);
+}
 
