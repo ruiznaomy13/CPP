@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:36:20 by ncastell          #+#    #+#             */
-/*   Updated: 2025/04/10 01:59:29 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/04/10 02:04:50 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,9 @@ void	PmergeMe::Sort(std::vector<int> &seq, size_t level)
 	std::cout << "\n----- End Iteration: " << level << "------\n";
 	// ShowContent("seq", seq);
 	Sort(seq, level + 1);
+	std::cout << "\n----- Iteration: " << level << "------\n";
+	ShowContent("seq", seq);
 	Merge(seq, pair_size);
-	std::cout << "\n----- Iteration: " << level - 1 << "------\n";
 }
 
 /*
@@ -192,14 +193,11 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 	for (i = 0; i + element_size <= pend.size(); i += element_size)
 	{
 		std::vector<int> b(pend.begin() + i, pend.begin() + i + element_size);
-		int n = b[element_size - 1];
+		size_t pos = BinarySearch(aux_nums, b[element_size - 1]);
 
-		size_t pos = BinarySearch(aux_nums, n);
-		size_t real_pos = pos * element_size;
-
-		main.insert(main.begin() + real_pos, b.begin(), b.end());
-		aux_nums.insert(aux_nums.begin() + pos, n);
-		std::cout << RED"POS FOR " << n << " = [" << real_pos << "]" << NC"\n";
+		aux_nums.insert(aux_nums.begin() + pos, b[element_size - 1]);
+		main.insert(main.begin() + (pos * element_size), b.begin(), b.end());
+		std::cout << RED"POS FOR " << b[element_size - 1] << " = [" << pos << "]" << NC"\n";
 	}
 
 	main.insert(main.end(), non.begin(), non.end());
