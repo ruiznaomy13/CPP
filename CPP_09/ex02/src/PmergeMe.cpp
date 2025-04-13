@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:36:20 by ncastell          #+#    #+#             */
-/*   Updated: 2025/04/10 02:04:50 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/04/13 23:58:05 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,23 @@ PmergeMe::PmergeMe(int ac, char **av)
 	Parser(ac, av + 1);
 }
 
-PmergeMe::~PmergeMe() { }
+PmergeMe::~PmergeMe()
+{
+	std::vector<int>	test(numsVec_);
+	std::sort(test.begin(), test.end());
+	ShowContent("TEST", test);
+	ShowContent("MINE", numsVec_);
+	if (test != numsVec_)
+		std::cout << RED"KO! :(" << std::endl;
+	else
+		std::cout << GREEN"OK! :)" << std::endl;
+}
 
 void	PmergeMe::Init()
 {
-	ShowContent("Inicio", this->numsVec);
-	Sort(numsVec, 1);
-	ShowContent("Fin", this->numsVec);
+	ShowContent("Inicio", this->numsVec_);
+	Sort(numsVec_, 1);
+	//ShowContent("Fin", this->numsVec_);
 }
 
 void	PmergeMe::Parser(int ac, char **av)
@@ -39,9 +49,9 @@ void	PmergeMe::Parser(int ac, char **av)
 
 		if (*end != '\0' || num < 0 || num < INT_MIN  || num > INT_MAX)
 			return (Error("ERROR: Invalid arguments"));
-		if (std::find(numsVec.begin(), numsVec.end(), num) != numsVec.end())
+		if (std::find(numsVec_.begin(), numsVec_.end(), num) != numsVec_.end())
 			return (Error("ERROR: Repeated numbers in the sequence"));
-		numsVec.push_back(num);
+		numsVec_.push_back(num);
 		i++;
 	}
 }
@@ -138,19 +148,18 @@ size_t	PmergeMe::BinarySearch(std::vector<int> vec, size_t start, size_t end, in
 	return (-1);
 }*/
 
-size_t PmergeMe::BinarySearch(const std::vector<int>& keys, int target)
+size_t PmergeMe::BinarySearch(const std::vector<int>& keys, size_t end, int target)
 {
 	size_t	start = 0;
-	size_t	end = keys.size();
 
-	while (start < end)
+	while (start < end) // IMPORTANT
 	{
 		size_t mid = start + (end - start) / 2;
 
-		if (keys[mid] < target)
-			start = mid + 1;
+		if (keys[mid] < target) // PARCHE  target = 5
+			start = mid + 1; // derecha [3, 2, 9, (1), 8, 6, 1] -> start = 4  = [8, 6, 1]
 		else
-			end = mid;
+			end = mid; // izquierda  [8, 6, 1] -> end = 1 = [8, 6]
 	}
 
 	return (start);
@@ -193,8 +202,8 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 	for (i = 0; i + element_size <= pend.size(); i += element_size)
 	{
 		std::vector<int> b(pend.begin() + i, pend.begin() + i + element_size);
-		size_t pos = BinarySearch(aux_nums, b[element_size - 1]);
-
+		ShowContent("aux", aux_nums);
+		size_t pos = BinarySearch(aux_nums, aux_nums.size(), b[element_size - 1]);
 		aux_nums.insert(aux_nums.begin() + pos, b[element_size - 1]);
 		main.insert(main.begin() + (pos * element_size), b.begin(), b.end());
 		std::cout << RED"POS FOR " << b[element_size - 1] << " = [" << pos << "]" << NC"\n";
@@ -204,16 +213,15 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 	std::cout << "\n";
 
 	seq = main;
+	ShowContent("seq", seq);
 }
 
 size_t	PmergeMe::JacobsthalNum(size_t n)
 {
 	size_t	aux;
 
-	if (n == 0)
-		return (0);
-	else if (n == 1)
-		return (1);
+	if (n <= 1)
+		return (3) ;
 	aux = JacobsthalNum(n - 1) + 2 * JacobsthalNum(n - 2);
 	return (aux);
 }

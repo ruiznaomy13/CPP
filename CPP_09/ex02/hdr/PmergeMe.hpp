@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:26:09 by ncastell          #+#    #+#             */
-/*   Updated: 2025/04/10 01:32:28 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/04/13 22:18:28 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@
 class PmergeMe
 {
 	private:
-		std::vector<int>	numsVec;
-		int			contSize;
+		std::vector<int>	numsVec_;
+		int			contSize_;
 
 	public:
 		PmergeMe(int ac, char **av);
@@ -40,9 +40,10 @@ class PmergeMe
 		void	Merge(std::vector<int> &seq, size_t pair_size);
 
 		size_t	JacobsthalNum(size_t );
+
 	private:
 		void	Parser(int ac, char **av);
-		size_t	BinarySearch(const std::vector<int>& values, int target);
+		size_t	BinarySearch(const std::vector<int>& values, size_t end, int target);
 		// bool	Parser(char **av);
 		void	Error(const std::string& errorMsg);
 };
