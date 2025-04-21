@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:36:20 by ncastell          #+#    #+#             */
-/*   Updated: 2025/04/13 23:58:05 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/04/22 00:25:42 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,84 +82,35 @@ void	PmergeMe::Sort(std::vector<int> &seq, size_t level)
 
 	if (n_pairs < 1)
 		return;	
-
-	/*BORRAR*/
-	std::cout << "\n----- Iteration: " << level << "------\n";
-	std::cout << "\npairs ->\t" << n_pairs << "\nseq size ->\t" << seq.size() \
-	<< "\npair size ->\t" << pair_size<< "\n" << std::endl;
-
 	for (size_t i = 0; i < seq.size() - (seq.size() % pair_size); i += pair_size)
 	{
+		size_t lastIndex = element_size - 1;
 		std::vector<int> left(seq.begin() + i, seq.begin() + i + element_size);
 		std::vector<int> right(seq.begin() + i + element_size, seq.begin() + i + pair_size);
-
-		/* BORRAR */
-		size_t lastIndex = element_size - 1;
-		std::cout << GREEN"LEFT: " << lastIndex << " -> " << left[lastIndex] << NC << std::endl;
-		std::cout << GREEN"RIGHT: " << lastIndex << " -> " << right[lastIndex] << NC << std::endl;
 
 		if (left[lastIndex] > right[lastIndex])
 			std::swap_ranges(left.begin(), left.end(), right.begin());
 
 		std::copy(left.begin(), left.end(), seq.begin() + i);
 		std::copy(right.begin(), right.end(), seq.begin() + i + element_size);
-
-		/*BORRA*/
-		ShowContent("left",left);
-		ShowContent("right", right);
-		std::cout << "\n"; 
 	}
 
-	std::cout << "\n----- End Iteration: " << level << "------\n";
-	// ShowContent("seq", seq);
 	Sort(seq, level + 1);
-	std::cout << "\n----- Iteration: " << level << "------\n";
-	ShowContent("seq", seq);
 	Merge(seq, pair_size);
 }
-
-/*
-size_t	PmergeMe::BinarySearch(std::vector<int> vec, size_t start, size_t end, int n, size_t element_size)
-{
-	std::vector<int> aux;
-	for (size_t i = 0; i + element_size < end; i += element_size)
-	{
-		std::vector<int> n(vec.begin() + i, vec.begin() + i + element_size);
-		aux.push_back(n[element_size - 1]);
-	}
-
-	while (end >= start)
-	{
-		int	mid = start + (end - start) / 2;
-		// std::cout << "END = " << end << "\nSTART = " << start << "\nMID = " << mid << std::endl;
-		std::cout << "MID = " << mid << std::endl;
-		if (start >= end)
-		{
-			if (vec[mid] < n)
-				return (mid + 1);
-			return (mid);
-		}
-		if (vec[mid] > n)
-			end = mid - 1;
-		else if (vec[mid] < n)
-			start = mid + 1;
-	}
-
-	return (-1);
-}*/
 
 size_t PmergeMe::BinarySearch(const std::vector<int>& keys, size_t end, int target)
 {
 	size_t	start = 0;
 
-	while (start < end) // IMPORTANT
+	while (start < end)
 	{
 		size_t mid = start + (end - start) / 2;
 
-		if (keys[mid] < target) // PARCHE  target = 5
-			start = mid + 1; // derecha [3, 2, 9, (1), 8, 6, 1] -> start = 4  = [8, 6, 1]
+		if (keys[mid] < target)
+			start = mid + 1;
 		else
-			end = mid; // izquierda  [8, 6, 1] -> end = 1 = [8, 6]
+			end = mid;
 	}
 
 	return (start);
@@ -173,9 +124,9 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 	std::vector<int>	main(seq.begin(), seq.begin() + pair_size);
 	std::vector<int>	pend;
 	std::vector<int>	non;
-	std::vector<int>	aux_nums;
-	size_t	i;
-	size_t	element_size = pair_size / 2;
+	std::vector<int>	aux_main;
+	size_t				i;
+	size_t				element_size = pair_size / 2;
 
 	std::cout << "PAIR_SIZE = " << pair_size << "\nELEMENT_SIZE = " << pair_size/2 << std::endl;
 	for (i = pair_size; i + element_size <= seq.size(); i += element_size)
@@ -197,16 +148,23 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 	ShowContent("NON", non);
 
 	for (size_t j = 0; j + element_size <= main.size(); j += element_size)
-		aux_nums.push_back(main[j + element_size - 1]);
+		aux_main.push_back(main[j + element_size - 1]);
 
+	size_t	inserted_elements = 0;
 	for (i = 0; i + element_size <= pend.size(); i += element_size)
 	{
 		std::vector<int> b(pend.begin() + i, pend.begin() + i + element_size);
-		ShowContent("aux", aux_nums);
-		size_t pos = BinarySearch(aux_nums, aux_nums.size(), b[element_size - 1]);
-		aux_nums.insert(aux_nums.begin() + pos, b[element_size - 1]);
+		ShowContent("aux", aux_main);
+		size_t end = aux_main.size();
+		size_t limit = (i / element_size) + 2 + inserted_elements;
+		std::cout << "LIMIT = " << limit << std::endl;
+		if (limit < end)
+			end = limit;
+		size_t pos = BinarySearch(aux_main, end, b[element_size - 1]);
+		aux_main.insert(aux_main.begin() + pos, b[element_size - 1]);
 		main.insert(main.begin() + (pos * element_size), b.begin(), b.end());
 		std::cout << RED"POS FOR " << b[element_size - 1] << " = [" << pos << "]" << NC"\n";
+		inserted_elements++;
 	}
 
 	main.insert(main.end(), non.begin(), non.end());
