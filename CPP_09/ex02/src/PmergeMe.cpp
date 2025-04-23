@@ -4,14 +4,14 @@
 PmergeMe::PmergeMe(int ac, char **av)
 {
 	Parser(ac, av + 1);
+	test = numsVec_;
 }
 
 PmergeMe::~PmergeMe()
 {
-	std::vector<int>	test(numsVec_);
 	std::sort(test.begin(), test.end());
 	ShowContent("TEST", test);
-	ShowContent("MINE", numsVec_);
+	ShowContent(GREEN"MINE", numsVec_);
 	if (test != numsVec_)
 		std::cout << RED"KO! :(" << std::endl;
 	else
@@ -22,7 +22,7 @@ void	PmergeMe::Init()
 {
 	ShowContent("Inicio", this->numsVec_);
 	Sort(numsVec_, 1);
-	//ShowContent("Fin", this->numsVec_);
+	ShowContent("Fin", this->numsVec_);
 }
 
 void	PmergeMe::Parser(int ac, char **av)
@@ -60,7 +60,7 @@ void	PmergeMe::ShowContent(std::string name, std::vector<int> v)
 			std::cout << ", ";
 		std::cout << v[i];
 	}
-	std::cout << "] --> size = " << v.size() << "\n";
+	std::cout << "] --> size = " << v.size() << "\n" << std::endl;
 }
 
 void	PmergeMe::Sort(std::vector<int> &seq, size_t level)
@@ -105,9 +105,6 @@ size_t PmergeMe::BinarySearch(const std::vector<int>& keys, size_t end, int targ
 	return (start);
 }
 
-// MAIN: b1, a1, a2, an...
-// PEND: b2, b3, bn...
-// No-p: %2 != 
 void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 {
 	std::vector<int>	main(seq.begin(), seq.begin() + pair_size);
@@ -130,13 +127,6 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 	if (i < seq.size())
 		non.insert(non.end(), seq.begin() + i, seq.end());
 
-	/* BORRAR */
-	std::cout << YELLOW"\n\t-----------------------------------------------------\n" << NC""<< std::endl;
-	std::cout << "PAIR_SIZE = " << pair_size << "\nELEMENT_SIZE = " << pair_size/2 << std::endl;
-	ShowContent("MAIN", main);
-	ShowContent("PEND", pend);
-	ShowContent("NON", non);
-
 	inserted = 0;
 	aux_main.clear();
 	for (size_t j = 0; j + element_size <= main.size(); j += element_size)
@@ -152,14 +142,10 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 		size_t diff = jacobsthal - prev_jc;
 		size_t j = jacobsthal;
 
-		/*BORRAR*/
-		std::cout << YELLOW"JACOB = " << jacobsthal << " in i(" << i << ")\nPREV = " << prev_jc << "\nDIFF = " << diff << NC"\n";
 		for (size_t j_in = 0; j_in < diff && j > 0; ++j_in, --j)
 		{
-			std::cout << GREEN" J(" << j << ")" << NC"" << std::endl;
 			size_t index = (j - 1) * element_size;
 			Insertion(main, pend, index, element_size);
-			ShowContent("main", main);
 		}
 		++i;
 		prev_jc = jacobsthal;
@@ -176,7 +162,6 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 void PmergeMe::Insertion(std::vector<int> &main, std::vector<int> &pend, size_t i, size_t element_size)
 {
 	std::vector<int> b(pend.begin() + i, pend.begin() + i + element_size);
-	ShowContent("B", b);
 	size_t	limit = (i / element_size) + 2 + inserted;
 	size_t	end = aux_main.size();
 

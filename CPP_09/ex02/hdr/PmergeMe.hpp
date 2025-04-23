@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 00:26:09 by ncastell          #+#    #+#             */
-/*   Updated: 2025/04/23 01:14:42 by ncastell         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:57:21 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ class PmergeMe
 {
 	private:
 		std::vector<int>	numsVec_;
-		int					contSize_;
 		std::vector<int>	aux_main;
 		size_t				inserted;
+		std::vector<int>	test;
+		int					contSize_;
 
 	public:
 		PmergeMe(int ac, char **av);
