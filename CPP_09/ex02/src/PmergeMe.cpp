@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   PmergeMe.cpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/15 00:36:20 by ncastell          #+#    #+#             */
-/*   Updated: 2025/04/22 00:25:42 by ncastell         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
@@ -71,7 +60,7 @@ void	PmergeMe::ShowContent(std::string name, std::vector<int> v)
 			std::cout << ", ";
 		std::cout << v[i];
 	}
-	std::cout << "]\n";
+	std::cout << "] --> size = " << v.size() << "\n";
 }
 
 void	PmergeMe::Sort(std::vector<int> &seq, size_t level)
@@ -124,17 +113,19 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 	std::vector<int>	main(seq.begin(), seq.begin() + pair_size);
 	std::vector<int>	pend;
 	std::vector<int>	non;
-	std::vector<int>	aux_main;
 	size_t				i;
 	size_t				element_size = pair_size / 2;
+	inserted = 0;
+	aux_main.clear();
 
-	std::cout << "PAIR_SIZE = " << pair_size << "\nELEMENT_SIZE = " << pair_size/2 << std::endl;
 	for (i = pair_size; i + element_size <= seq.size(); i += element_size)
 	{
 		std::vector<int> b(seq.begin() + i, seq.begin() + i + element_size);
 		pend.insert(pend.end(), b.begin(), b.end());
+
 		if (i + pair_size > seq.size())
-			continue ;
+			continue;
+
 		std::vector<int> a(seq.begin() + i + element_size, seq.begin() + i + pair_size);
 		main.insert(main.end(), a.begin(), a.end());
 		i += element_size;
@@ -143,44 +134,81 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 	if (i < seq.size())
 		non.insert(non.end(), seq.begin() + i, seq.end());
 
+	std::cout << YELLOW"\n\t-----------------------------------------------------\n" << NC""<< std::endl;
+	std::cout << "PAIR_SIZE = " << pair_size << "\nELEMENT_SIZE = " << pair_size/2 << std::endl;
 	ShowContent("MAIN", main);
 	ShowContent("PEND", pend);
 	ShowContent("NON", non);
 
+	// Extraer claves auxiliares (últimos elementos de cada bloque en MAIN)
+	aux_main.clear();
 	for (size_t j = 0; j + element_size <= main.size(); j += element_size)
 		aux_main.push_back(main[j + element_size - 1]);
 
-	size_t	inserted_elements = 0;
-	for (i = 0; i + element_size <= pend.size(); i += element_size)
+	// Inserciones usando números de Jacobsthal
+	i = 1;
+	size_t pend_blocks = pend.size() / element_size;
+	size_t prev_jc = 0;
+	size_t jacobsthal = JacobsthalNum(i);
+	if (jacobsthal > pend_blocks)
+		prev_jc = 0;
+	while (jacobsthal <= pend_blocks)
 	{
-		std::vector<int> b(pend.begin() + i, pend.begin() + i + element_size);
-		ShowContent("aux", aux_main);
-		size_t end = aux_main.size();
-		size_t limit = (i / element_size) + 2 + inserted_elements;
-		std::cout << "LIMIT = " << limit << std::endl;
-		if (limit < end)
-			end = limit;
-		size_t pos = BinarySearch(aux_main, end, b[element_size - 1]);
-		aux_main.insert(aux_main.begin() + pos, b[element_size - 1]);
-		main.insert(main.begin() + (pos * element_size), b.begin(), b.end());
-		std::cout << RED"POS FOR " << b[element_size - 1] << " = [" << pos << "]" << NC"\n";
-		inserted_elements++;
+		size_t diff = jacobsthal - prev_jc;
+		size_t j = jacobsthal;
+
+		/*BORRAR*/
+		std::cout << YELLOW"JACOB = " << jacobsthal << " in i(" << i << ")\nPREV = " << prev_jc << "\nDIFF = " << diff << NC"\n";
+		for (size_t j_in = 0; j_in < diff && j > 0; ++j_in, --j)
+		{
+			std::cout << GREEN" J(" << j << ")" << NC"" << std::endl;
+			size_t index = (j - 1) * element_size;
+			Insertion(main, pend, index, element_size);
+			ShowContent("main", main);
+		}
+		++i;
+		prev_jc = jacobsthal;
+		jacobsthal = JacobsthalNum(i);
+	}
+
+	// std::cout << "JAAAAAA " << prev_jc << std::endl;
+	for (i = inserted * element_size; i + element_size <= pend.size(); i += element_size)
+	{
+		Insertion(main, pend, i, element_size);
 	}
 
 	main.insert(main.end(), non.begin(), non.end());
-	std::cout << "\n";
+	ShowContent("LAST MAIN", main);
 
 	seq = main;
-	ShowContent("seq", seq);
 }
 
-size_t	PmergeMe::JacobsthalNum(size_t n)
+void PmergeMe::Insertion(std::vector<int> &main, std::vector<int> &pend, size_t i, size_t element_size)
 {
-	size_t	aux;
+	std::vector<int> b(pend.begin() + i, pend.begin() + i + element_size);
+	ShowContent("B", b);
+	size_t	limit = (i / element_size) + 2 + inserted;
+	size_t	end = aux_main.size();
 
-	if (n <= 1)
-		return (3) ;
-	aux = JacobsthalNum(n - 1) + 2 * JacobsthalNum(n - 2);
-	return (aux);
+	if (limit < end)
+		end = limit;
+	size_t pos = BinarySearch(aux_main, end, b[element_size - 1]);
+	aux_main.insert(aux_main.begin() + pos, b[element_size - 1]);
+	main.insert(main.begin() + (pos * element_size), b.begin(), b.end());
+	inserted++;
+}
+
+size_t PmergeMe::JacobsthalNum(size_t n)
+{
+	if (n == 0 || n == 1)
+		return (1);
+	size_t a = 1, b = 1, c;
+	for (size_t i = 2; i <= n; ++i)
+	{
+		c = b + 2 * a;
+		a = b;
+		b = c;
+	}
+	return (b);
 }
 
