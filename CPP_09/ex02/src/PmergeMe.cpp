@@ -115,17 +115,13 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 	std::vector<int>	non;
 	size_t				i;
 	size_t				element_size = pair_size / 2;
-	inserted = 0;
-	aux_main.clear();
 
 	for (i = pair_size; i + element_size <= seq.size(); i += element_size)
 	{
 		std::vector<int> b(seq.begin() + i, seq.begin() + i + element_size);
 		pend.insert(pend.end(), b.begin(), b.end());
-
 		if (i + pair_size > seq.size())
-			continue;
-
+			continue ;
 		std::vector<int> a(seq.begin() + i + element_size, seq.begin() + i + pair_size);
 		main.insert(main.end(), a.begin(), a.end());
 		i += element_size;
@@ -134,24 +130,23 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 	if (i < seq.size())
 		non.insert(non.end(), seq.begin() + i, seq.end());
 
+	/* BORRAR */
 	std::cout << YELLOW"\n\t-----------------------------------------------------\n" << NC""<< std::endl;
 	std::cout << "PAIR_SIZE = " << pair_size << "\nELEMENT_SIZE = " << pair_size/2 << std::endl;
 	ShowContent("MAIN", main);
 	ShowContent("PEND", pend);
 	ShowContent("NON", non);
 
-	// Extraer claves auxiliares (últimos elementos de cada bloque en MAIN)
+	inserted = 0;
 	aux_main.clear();
 	for (size_t j = 0; j + element_size <= main.size(); j += element_size)
 		aux_main.push_back(main[j + element_size - 1]);
 
-	// Inserciones usando números de Jacobsthal
 	i = 1;
 	size_t pend_blocks = pend.size() / element_size;
 	size_t prev_jc = 0;
 	size_t jacobsthal = JacobsthalNum(i);
-	if (jacobsthal > pend_blocks)
-		prev_jc = 0;
+
 	while (jacobsthal <= pend_blocks)
 	{
 		size_t diff = jacobsthal - prev_jc;
@@ -171,15 +166,10 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 		jacobsthal = JacobsthalNum(i);
 	}
 
-	// std::cout << "JAAAAAA " << prev_jc << std::endl;
 	for (i = inserted * element_size; i + element_size <= pend.size(); i += element_size)
-	{
 		Insertion(main, pend, i, element_size);
-	}
 
 	main.insert(main.end(), non.begin(), non.end());
-	ShowContent("LAST MAIN", main);
-
 	seq = main;
 }
 
@@ -200,15 +190,7 @@ void PmergeMe::Insertion(std::vector<int> &main, std::vector<int> &pend, size_t 
 
 size_t PmergeMe::JacobsthalNum(size_t n)
 {
-	if (n == 0 || n == 1)
+	if (n <= 1)
 		return (1);
-	size_t a = 1, b = 1, c;
-	for (size_t i = 2; i <= n; ++i)
-	{
-		c = b + 2 * a;
-		a = b;
-		b = c;
-	}
-	return (b);
+	return JacobsthalNum(n - 1) + 2 * JacobsthalNum(n - 2);
 }
-
