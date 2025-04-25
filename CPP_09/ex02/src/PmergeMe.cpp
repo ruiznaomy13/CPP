@@ -9,6 +9,7 @@ PmergeMe::PmergeMe(int ac, char **av)
 
 PmergeMe::~PmergeMe()
 {
+	/*
 	std::sort(test.begin(), test.end());
 	ShowContent("TEST", test);
 	ShowContent(GREEN"MINE", numsVec_);
@@ -16,13 +17,31 @@ PmergeMe::~PmergeMe()
 		std::cout << RED"KO! :(" << std::endl;
 	else
 		std::cout << GREEN"OK! :)" << std::endl;
+	*/
+}
+
+PmergeMe::PmergeMe(const PmergeMe &other)
+	: numsVec_(other.numsVec_), numsDeq_(other.numsDeq_) { }
+
+PmergeMe &PmergeMe::operator=(const PmergeMe &other)
+{
+	if (this == &other)
+		return (*this);
+	numsVec_ = other.numsVec_;
+	numsDeq_ = other.numsDeq_;
+	return (*this);
 }
 
 void	PmergeMe::Init()
 {
-	ShowContent("Inicio", this->numsVec_);
+	ShowContent(YELLOW"Inicio", this->numsVec_);
+	clock_t start(clock());
 	Sort(numsVec_, 1);
-	ShowContent("Fin", this->numsVec_);
+	clock_t end(clock());
+	vecTime_ = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+	std::cout << "Time to process a range of " << numsVec_.size() << 
+	" elements with std::vector: " << std::fixed << std::setprecision(5) << vecTime_ << " seconds.\n";
+	ShowContent(GREEN"Fin", this->numsVec_);
 }
 
 void	PmergeMe::Parser(int ac, char **av)
@@ -53,14 +72,15 @@ void	PmergeMe::Error(const std::string& errorMsg)
 
 void	PmergeMe::ShowContent(std::string name, std::vector<int> v)
 {
-	std::cout << name << " = [";
+	std::cout << "\n" << name << " = [";
 	for (size_t i = 0; i < v.size(); i++)
 	{
 		if (i != 0)
 			std::cout << ", ";
 		std::cout << v[i];
 	}
-	std::cout << "] --> size = " << v.size() << "\n" << std::endl;
+	std::cout << "]";
+	std::cout << "--> size = " << v.size() << NC"\n" << std::endl; // BORRAR
 }
 
 void	PmergeMe::Sort(std::vector<int> &seq, size_t level)
@@ -128,9 +148,9 @@ void PmergeMe::Merge(std::vector<int> &seq, size_t pair_size)
 		non.insert(non.end(), seq.begin() + i, seq.end());
 
 	inserted = 0;
-	aux_main.clear();
+	auxMainV_.clear();
 	for (size_t j = 0; j + element_size <= main.size(); j += element_size)
-		aux_main.push_back(main[j + element_size - 1]);
+		auxMainV_.push_back(main[j + element_size - 1]);
 
 	i = 1;
 	size_t pend_blocks = pend.size() / element_size;
@@ -163,12 +183,12 @@ void PmergeMe::Insertion(std::vector<int> &main, std::vector<int> &pend, size_t 
 {
 	std::vector<int> b(pend.begin() + i, pend.begin() + i + element_size);
 	size_t	limit = (i / element_size) + 2 + inserted;
-	size_t	end = aux_main.size();
+	size_t	end = auxMainV_.size();
 
 	if (limit < end)
 		end = limit;
-	size_t pos = BinarySearch(aux_main, end, b[element_size - 1]);
-	aux_main.insert(aux_main.begin() + pos, b[element_size - 1]);
+	size_t pos = BinarySearch(auxMainV_, end, b[element_size - 1]);
+	auxMainV_.insert(auxMainV_.begin() + pos, b[element_size - 1]);
 	main.insert(main.begin() + (pos * element_size), b.begin(), b.end());
 	inserted++;
 }
